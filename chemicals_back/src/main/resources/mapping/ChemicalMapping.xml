@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nju.chemicals.mapper.ChemicalMapper">
+
+    <!--  列名与变量名映射关系  -->
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Chemical">
+        <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
+        <result column="cas" property="cas" jdbcType="VARCHAR"/>
+        <result column="alias" property="alias" jdbcType="VARCHAR"/>
+        <result column="en_name" property="enName" jdbcType="VARCHAR"/>
+        <result column="formula" property="formula" jdbcType="VARCHAR"/>
+        <result column="weight" property="weight" jdbcType="DOUBLE"/>
+        <result column="property" property="property" jdbcType="VARCHAR"/>
+        <result column="stab_react" property="stabAndReact" jdbcType="VARCHAR"/>
+        <result column="danger_ov" property="dangerOV" jdbcType="VARCHAR"/>
+        <result column="danger_ca" property="dangerCA" jdbcType="VARCHAR"/>
+        <result column="oper_store" property="operAndStore" jdbcType="VARCHAR"/>
+        <result column="ctrl_def" property="ctrlAndDef" jdbcType="VARCHAR"/>
+        <result column="first_aid" property="firstAid" jdbcType="VARCHAR"/>
+        <result column="leak_treat" property="leakTreatment" jdbcType="VARCHAR"/>
+        <result column="disposal" property="disposal" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--  某条查询需要的列（按id匹配）  -->
+    <sql id="BaseColumns">
+        ch_name, cas, alias, en_name, formula, weight, property, stab_react,
+        danger_ov, danger_ca, oper_store, ctrl_def, first_aid, leak_treat, disposal
+    </sql>
+
+    <!--  通过化学品名来模糊查询  -->
+    <select id="selectByCHName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumns"/>
+        FROM chemicals
+        WHERE ch_name LIKE "%"#{chName}"%"  -- 模糊查询加通配符，还可以用bind写
+    </select>
+
+    <!-- 通过CAS编号来模糊查询 -->
+    <select id="selectByCAS" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumns"/>
+        FROM chemicals
+        WHERE cas LIKE "%"#{cas}"%"
+    </select>
+    
+    <!-- 随机获取一个化学品信息 -->
+    <select id="selectOneByRandom" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumns"/>
+        FROM chemicals
+        WHERE id >= ( ((SELECT MAX(id) FROM chemicals) - (SELECT MIN(id) FROM chemicals)) * RAND() + (SELECT MIN(id) FROM chemicals) )
+        LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nju.chemicals.mapper.InfoForPoliceMapper">
+
+    <!--  列名与变量名映射关系  -->
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Chemical">
+        <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="position" property="position" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.InfoForPolice">
+        INSERT INTO info_for_police(ch_name, remark, location)
+        VALUES (#{chName}, #{remark}, #{location})
+    </insert>
+
+</mapper>
