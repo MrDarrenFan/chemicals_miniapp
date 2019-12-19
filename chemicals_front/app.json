@@ -1,4 +1,4 @@
-﻿{
+{
   "pages": [
     "pages/index/index",
     "pages/QRsearch/QRsearch",
@@ -8,7 +8,6 @@
     "pages/infoUpload/infoUpload",
     "pages/alarm/alarm",
     "pages/logs/logs"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,7 +15,6 @@
     "navigationBarTitleText": "化讯通",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
