@@ -1,9 +1,8 @@
-{
+﻿{
   "pages": [
     "pages/index/index",
     "pages/QRsearch/QRsearch",
     "pages/search/search",
-    "pages/camera/camera",
     "pages/result/result",
     "pages/resultItem/resultItem",
     "pages/infoUpload/infoUpload",
