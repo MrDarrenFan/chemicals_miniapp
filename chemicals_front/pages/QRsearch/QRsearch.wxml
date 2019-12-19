@@ -1,0 +1,6 @@
+<!-- pages/QRsearch/QRsearch.wxml
+<view class="shoudian">
+<image style="width:80rpx;height:80rpx" src="../../icons/手电筒.png"></image>
+</view> -->
+<view><text>你扫到的是{{scanType}}码</text></view>
+<view><text>内容为：{{result}}</text></view>

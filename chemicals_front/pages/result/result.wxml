@@ -1,0 +1,10 @@
+
+<!-- 注意这边的wx：if 和 wx:else 在没有结果情况需要有一行提示 -->
+<view class="weui-cells__tips"  wx:if="{{itemlist.length==0}}" >没有搜到相关内容</view>
+<view wx:else>
+  <view class="weui-cells weui-cells_after-title" wx:for="{{itemlist}}"  wx:for-item="item" wx:key="index" >
+    <view data-index="{{index}}"  bindtap="gotodetail" class="weui-panel__hd font-black-34" style="flex">化学品名称:{{item.chName}}  CAS号:{{item.cas}}</view> 
+  </view>
+</view>
+
+

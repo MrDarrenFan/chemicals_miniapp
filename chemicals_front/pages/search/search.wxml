@@ -1,0 +1,20 @@
+
+<!-- 这里需要注意 home-search-bar 是这个目录下的component 不是总目录里的compoent  可以从search.json里找到这个的引用 -->
+<home-search-bar id="searchBar" bindcancel="onCancel" bindsearch="onSearch"></home-search-bar>
+ 
+ 
+<view class="history-head">
+  <view class="">搜索历史</view>
+  <view>
+  <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
+  
+  </view>
+</view>
+<!-- 一条横线 -->
+  <view class="divLine"></view>
+
+<!-- 历史记录 -->
+<view class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >{{item.value}}</view>
+  
+
+     

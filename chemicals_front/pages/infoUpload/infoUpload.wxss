@@ -1,0 +1,29 @@
+/* pages/test/test.wxss */
+/* 这边的是这个form表单的形式 */
+/* 注意点  在更换时需要 picker 即选择转台那边的样式 不要忘 */
+.section__title{
+
+    float: left;
+    width:30%;
+}
+.form-group{
+    float: right;
+    width: 70%;
+}
+.section{
+    clear: both;
+    width:90%;
+    margin: 2rem auto;
+    padding: 5rpx;
+}
+.input-text{
+    border: 1px solid #ddd;
+}
+.button{
+    border: 1px solid #1aad19;
+    border-radius: 2px;
+}
+.picker{
+    padding: 13px;
+    background-color: #FFFFFF;
+}
