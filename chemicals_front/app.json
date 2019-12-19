@@ -7,6 +7,7 @@
     "pages/resultItem/resultItem",
     "pages/infoUpload/infoUpload",
     "pages/alarm/alarm",
+    "pages/about/about",
     "pages/logs/logs"
   ],
   "window": {
@@ -15,6 +16,25 @@
     "navigationBarTitleText": "化讯通",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+       "iconPath": "/images/icon_home_line.png",
+       "selectedIconPath": "/images/icon_home_fill.png"
+    },
+    {
+      "pagePath": "pages/about/about",
+      "text": "关于我们",
+      "iconPath": "/images/icon_me_line.png",
+      "selectedIconPath": "/images/icon_me_fill.png"
+    }
+    ]
+  },
+ 
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {

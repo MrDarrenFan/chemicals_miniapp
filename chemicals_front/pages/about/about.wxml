@@ -1,0 +1,5 @@
+<!--pages/about/about.wxml-->
+
+<view class="text-green text-center">
+      {{aboutus}}
+    </view>

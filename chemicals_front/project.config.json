@@ -25,8 +25,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
-	"appid": "wx498e6d29d16068d1",
-	"projectname": "WorkOfNet",
+	"appid": "wx1dc333add7c47f71",
+	"projectname": "web",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -125,6 +125,12 @@
 					"name": "pages/alarm/alarm",
 					"pathName": "pages/alarm/alarm",
 					"query": "itemname=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "bar",
+					"pathName": "pages/components/bar/bar",
 					"scene": null
 				}
 			]
