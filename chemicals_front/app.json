@@ -8,6 +8,7 @@
     "pages/infoUpload/infoUpload",
     "pages/alarm/alarm",
     "pages/about/about",
+    "pages/history/history",
     "pages/logs/logs"
   ],
   "window": {
@@ -20,17 +21,25 @@
     "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
+    "color": "bfbfbf",
+    "selectedColor": "#707070",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-       "iconPath": "/images/icon_home_line.png",
-       "selectedIconPath": "/images/icon_home_fill.png"
+       "iconPath": "/images/home.png",
+       "selectedIconPath": "/images/home_tap.png"
+    },
+    {
+      "pagePath": "pages/history/history",
+      "text": "查看记录",
+      "iconPath": "/images/history.png",
+      "selectedIconPath": "/images/history_tap.png"
     },
     {
       "pagePath": "pages/about/about",
       "text": "关于我们",
-      "iconPath": "/images/icon_me_line.png",
-      "selectedIconPath": "/images/icon_me_fill.png"
+      "iconPath": "/images/me.png",
+      "selectedIconPath": "/images/me_tap.png"
     }
     ]
   },

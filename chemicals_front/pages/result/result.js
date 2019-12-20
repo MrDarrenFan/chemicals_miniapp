@@ -9,7 +9,12 @@ Page({
     //符合搜索条件的list
     itemlist: [],
     serviceurl:"",
+
+    //点进去才记录 的 历史记录
+    history_scan:[],
   },
+
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -30,6 +35,8 @@ Page({
        serviceurl:app.serviceurl
     })
 
+    that.getHistory()
+
   },
 
 
@@ -43,11 +50,67 @@ Page({
       "type":type,
       "index":id
     }
+    this.setHistory(id)
+
     var dataStr=JSON.stringify(data)
     wx.navigateTo({
       url: '../resultItem/resultItem?data=' + dataStr,
     })
     
+  },
+
+
+  //查看的记录· 点进去才被记录
+setHistory:function(id){
+  var history_scan_data = this.data.itemlist[id]
+  var newhistory = [history_scan_data]
+
+  console.log(history_scan_data)
+  let that = this
+  that.getHistory()
+  var history_scan = this.data.history_scan
+  for (var i = 0; i < history_scan.length; i++) {
+    if (history_scan[i].chName == history_scan_data.chName) {
+
+      // console.log("出现相同的")
+      // console.log(history_scan[i].chName)
+      // console.log(history_scan_data.chName)
+      history_scan.splice(i, 1)
+      // console.log("删除了之前出现的")
+      break;
+    }
+  }
+
+  for (var i = 0; i < history_scan.length; i++) {
+    newhistory.push(history_scan[i])
+  }
+  // console.log("新添加了一个")
+  console.log(newhistory)
+  wx.setStorage({
+    key: 'history_scan',
+    data: newhistory
+  })
+
+},
+
+  
+  getHistory: function () {
+    let that = this
+    wx.getStorage({
+      key: 'history_scan',
+      success: function (res) {
+        // var data =JSON.parse(res)
+        // console.log(data)
+        console.log(res)
+        that.setData({
+          history_scan: res.data
+        })
+      },
+      fail: function (res) {
+        console.log("fail")
+      }
+    })
+
   },
 
 

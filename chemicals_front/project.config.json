@@ -131,6 +131,14 @@
 					"id": -1,
 					"name": "bar",
 					"pathName": "pages/components/bar/bar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "hh",
+					"pathName": "icons/icon_home",
+					"query": "",
 					"scene": null
 				}
 			]

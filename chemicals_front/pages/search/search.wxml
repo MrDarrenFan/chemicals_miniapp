@@ -32,6 +32,9 @@
 
 <!-- 历史记录 -->
 <view class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >{{item.value}}</view>
+
+
+<cu-custom id="cu-custom">11111111111</cu-custom>
   
 
      

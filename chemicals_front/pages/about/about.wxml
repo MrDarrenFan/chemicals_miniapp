@@ -10,6 +10,8 @@
   </navigator>
 </view>
 
-<view class="text-green text-center">
+<view>
+<view class="text-grey text-left">
   {{aboutus}}
+</view>
 </view>

@@ -231,6 +231,19 @@ btnSearch:function(event){
 
   },
 
+  //获取历史记录
+  _getHistory(){
+    var that = this
+    wx.getStorage({
+      key: 'history',
+      success: function(res) {
+        that.setData({
+          history:res.data
+        })
+      },
+    })
+  },
+
   //保存历史记录
   _saveHistory: function (type,value) {
     var data={
@@ -239,7 +252,6 @@ btnSearch:function(event){
     }
    
    let history = this.data.history.filter(v => v.value !== value)
-    // history.unshift(value)
     history.unshift(data)
     if (history.length > 10) {
       history = history.slice(0, 10)
@@ -259,8 +271,8 @@ btnSearch:function(event){
       content: '确定清除所有搜索历史？这项操作将无法撤销',
       success: res => {
         if (res.confirm) {
-          wx.removeStorage({ key: 'history' })
-          this.setData({ 'search.history': [] })
+          wx.removeStorage({ key: 'history'})
+          this.setData({ 'history': [] })
         }
       }
     })
@@ -285,7 +297,7 @@ btnSearch:function(event){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+    this._getHistory()
   },
 
   /**

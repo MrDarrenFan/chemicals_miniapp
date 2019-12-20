@@ -1,0 +1,34 @@
+
+
+<view   wx:if="{{history_scan.length==0}}" >没有记录</view>
+<view wx:else>
+
+  <view class="cu-bar">
+  <view class="action">搜索历史</view>
+  <view class="action">
+    <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
+  </view>
+</view>
+<!-- 一条横线 -->
+  <view class="divLine"></view>
+
+  <view class="cu-card article {{toggleDelay?'animation-slide-bottom':''}}" wx:for="{{history_scan}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+    <view class="cu-item shadow" data-index="{{index}}" bindtap="gotodetail">
+      <view class="cu-bar">
+        <view class="title">{{item.chName}}</view>
+        <view class="action text-content">CAS: {{item.cas}}</view>
+      </view>
+      <view class="content">
+        <view class="desc">
+          <view class="text-content text-sl">{{item.formula}}</view>
+          <view>
+            <view class="cu-tag bg-red light sm round">危险品1类</view>
+            <view class="cu-tag bg-red light sm round">危险品2类</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
