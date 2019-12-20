@@ -3,7 +3,7 @@
 <view class="cu-bar search bg-white">
   <navigator class="search-form round" url="../search/search">
     <text class="cuIcon-search"></text>
-    <input type="text" placeholder="输入 化学品名 或 CAS编号 进行查询" confirm-type="search"></input>
+    <input type="text" disabled="disabled" placeholder="查询化学品" confirm-type="search"></input>
   </navigator>
   <navigator class="action" url="../QRsearch/QRsearch">
     <image bindtap="QRsearch" style="width:50rpx;height:50rpx" src="../../icons/二维码查询.png"></image>
@@ -12,12 +12,29 @@
 
 
 <view>
-  <view bindtap="changeBatch">换一批</view>
-  <view wx:for="{{randomList}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-    <view data-index="{{index}}" bindtap="gotodetail">
-      <view>{{item.chName}}</view>
-      <view>{{item.cas}}</view>
-      <view>{{item.formula}}</view>
+  <view class="cu-bar bg-white margin-tb-sm" style="margin-bottom:10rpx;">
+    <view class="action title-style-3">
+      <text class="text-xxl text-bold">猜你不知道</text>
+    </view>
+    <view class="action">
+      <button class="cu-btn round bg-white shadow" bindtap="changeBatch">换一换</button>
+    </view>
+  </view>
+  <view class="cu-card article {{toggleDelay?'animation-slide-bottom':''}}" wx:for="{{randomList}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+    <view class="cu-item shadow" data-index="{{index}}" bindtap="gotodetail">
+      <view class="cu-bar">
+        <view class="title">{{item.chName}}</view>
+        <view class="action text-content">CAS: {{item.cas}}</view>
+      </view>
+      <view class="content">
+        <view class="desc">
+          <view class="text-content text-sl">{{item.formula}}</view>
+          <view>
+            <view class="cu-tag bg-red light sm round">危险品1类</view>
+            <view class="cu-tag bg-red light sm round">危险品2类</view>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </view>

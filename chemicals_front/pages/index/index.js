@@ -63,6 +63,17 @@ Page({
 
 //换一批操作
   changeBatch:function(){
+
+    var that = this;
+    that.setData({
+      toggleDelay: true
+    })
+    setTimeout(function () {
+      that.setData({
+        toggleDelay: false
+      })
+    }, 1000)
+
     var list=[]
     var tmplist=this.data.randomList
     for(var i=0;i<3;i++){
@@ -70,7 +81,6 @@ Page({
     }
     this.getRandomList(list)
   },
-
 
 //点击每个样本，进入详细信息
   gotodetail:function(e){

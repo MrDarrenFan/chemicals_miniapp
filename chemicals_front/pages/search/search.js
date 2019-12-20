@@ -7,6 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    place:"输入化学品中文名",
+    index:0,
+    picker:['中文名', 'CAS号'],
+    // 清除键
+    isHidden: true,
     //搜索的内容
     text:"",
     //历史记录
@@ -24,6 +29,20 @@ Page({
   onLoad: function (options) {
    
   },
+
+
+  // 选择框
+  PickerChange(e) {
+    let that = this
+    var pre = "输入化学品"
+    that.setData({
+      index: e.detail.value,
+      place: pre+this.data.picker[e.detail.value]
+
+    })
+    
+  },
+
   //点击历史记录的条目，进行又一次的搜索
   reSearch:function(e){
     var data={
@@ -32,14 +51,50 @@ Page({
     this.onSearch(data)
   },
 
+  // input聚焦，显示清除按钮
+  onFocus:function(){
+    this.setData({
+      isHidden:false
+    })
+  },
 
-  //搜索执行的函数
+  // input失焦，隐藏清除按钮
+  onBlur:function(){
+    this.setData({
+      isHidden:true
+    })
+  },
+
+  //随时更新搜索框里的值
+  inputTyping:function(e){
+    var value = e.detail.value
+    let that = this
+    that.setData({
+      text:value
+    })
+  },
+
+  // 清除输入栏
+  onClear:function(e){
+
+    let that=this
+    that.setData({
+      text:""
+    })
+  },
+
+  //搜索回车执行的函数
   onSearch:function(e){
    
+    console.log(e)
+
     var detail=e.detail
-    var type=detail.type
+    var type=this.data.picker[this.data.index]
     var text=detail.value
     //type有两种 中文名和cas号
+    if(text == null || text == "") {
+      return
+    }
     if(type=="中文名"){
       this.searchByCHName(text)
     }else{
@@ -50,6 +105,20 @@ Page({
     this._saveHistory(type,text)
   },
  
+//搜索按键点击事件
+btnSearch:function(event){
+  var value=this.data.text
+  var detail={
+    'value':value
+  }
+  var e={
+    'detail':detail
+  }
+
+  this.onSearch(e)
+},
+
+
 //按中文名搜索
   searchByCHName: function (text) {
     var service=this.data.serviceurl

@@ -1,6 +1,5 @@
 {
-
-  "navigationBarTitleText": "查询",
+  "navigationBarTitleText": "化学品查询",
   "usingComponents": {
     "home-search-bar": "../components/home-search-bar/index"
   }

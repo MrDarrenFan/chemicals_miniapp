@@ -1,13 +1,30 @@
+<view class="cu-bar search bg-white" bindsearch="onSearch">
+  <picker style="margin:0rpx 10rpx 0rpx 20rpx;" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+    <view class="picker">
+      <text>{{index?picker[index]:'中文名'}}</text>
+      <text class="cuIcon-triangledownfill" style="margin-left:5rpx;"></text>
+    </view>
+  </picker>
+  <view class="search-form round" style="margin-left:0px;" >
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="{{place}}" value="{{text}}" confirm-type="search" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onSearch" bindinput="inputTyping" ></input>
+    <view class="text-xl">
+      <view class="cuIcon-roundclose" hidden="{{isHidden}}" bindtap="onClear"></view>
+    </view>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-white shadow round" data-value="{{text}}" bindtap="btnSearch">搜索</button>
+  </view>
+</view>
 
 <!-- 这里需要注意 home-search-bar 是这个目录下的component 不是总目录里的compoent  可以从search.json里找到这个的引用 -->
-<home-search-bar id="searchBar" bindcancel="onCancel" bindsearch="onSearch"></home-search-bar>
+<!-- <home-search-bar id="searchBar" bindcancel="onCancel"  bindsearch="onSearch"></home-search-bar> -->
+
  
- 
-<view class="history-head">
-  <view class="">搜索历史</view>
-  <view>
-  <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
-  
+<view class="cu-bar">
+  <view class="action">搜索历史</view>
+  <view class="action">
+    <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
   </view>
 </view>
 <!-- 一条横线 -->

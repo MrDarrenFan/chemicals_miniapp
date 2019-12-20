@@ -74,23 +74,6 @@ Component({
       })
     },
 
-    // _onScan: function () {
-    //   var scanfn = Promisify(wx.scanCode)
-    //   scanfn({scanType: ['barCode']}).then(res => {
-    //     if (!isISBN(res.result)) {
-    //       return wx.showModal({
-    //         title: '扫描内容不合法',
-    //         content: '请扫描图书ISBN条形码',
-    //         showCancel: false
-    //       })
-    //     } else {
-    //       wx.navigateTo({
-    //         url: `../book-detail/book-detail?isbn=${res.result}`
-    //       })
-    //     }
-    //   })
-    // },
-
     // 在输入框不为空时搜索
     _onSearch: function (e) {
       if (this.data.value) {

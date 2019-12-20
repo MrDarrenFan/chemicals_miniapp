@@ -12,7 +12,7 @@
     <!-- 聚焦后的搜索输入框 -->
     <view class="home-search-bar__input-box weui-search-bar__box">
       <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-      <input type="text" class="weui-search-bar__input" confirm-type="search" placeholder="搜索" value="{{value}}" focus="{{focus}}" bindinput="_onInput" bindconfirm="_onSearch" />
+      <input type="text" class="weui-search-bar__input" confirm-type="search" value="{{value}}" focus="{{focus}}" bindinput="_onInput" bindconfirm="_onSearch" />
       <!-- <image wx:if="{{value.length <= 0}}" mode="aspectFit" class="home-search-bar__icon-scan" src="/images/icon_scan.png" catchtap="_onScan"></image>
       <view wx:else class="weui-icon-clear" bindtap="_onClear"> -->
       <view  class="weui-icon-clear" bindtap="_onClear">
@@ -22,7 +22,7 @@
     <!-- 未聚焦时的搜索输入框 -->
     <label class="weui-search-bar__label" hidden="{{focus}}" bindtap="_onFocus">
       <icon class="weui-icon-search" type="search" size="14"></icon>
-      <view class="weui-search-bar__text">输入查询内容</view>
+      <view class="weui-search-bar__text">输入 化学品名 或 CAS编号 </view>
     </label>
     <!-- 扫描图标 -->
     <!-- <image hidden="{{focus}}" mode="aspectFit" class="home-search-bar__icon-scan" src="/images/icon_scan.png" catchtap="_onScan"></image> -->
