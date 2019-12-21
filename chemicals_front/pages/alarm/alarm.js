@@ -87,6 +87,10 @@ Page({
         } else {
           that.uploadFailure()
         }
+      },
+      fail:function(res){
+        that.uploadFailure()
+        return
       }
     })
 
@@ -126,7 +130,7 @@ Page({
 
   //弹出提示框  清除按钮的提示框
   //这里的两个函数没有用到 可以删除 也可保留为后续可能用到
-  modalTap2: function (e) {
+  toast1ChangeodalTap2: function (e) {
     this.setData({
       modalHidden2: false
     })

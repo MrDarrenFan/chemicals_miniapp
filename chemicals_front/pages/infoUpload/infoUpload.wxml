@@ -1,57 +1,55 @@
 <view >
   <form bindsubmit="formSubmit" bindreset="formReset">
-
-     <view class="section">
-      <view class="section__title">化学品名称 :</view> 
-       <view class='form-group'name="{{itemname}}">
-          {{itemname}}
-      </view>
-    </view>
-
-    <view class="section"> 
-      <view class="section__title">产品批号 :</view>
-      <view class='form-group'>
-          <input type="text" class="input-text" name="serialNumber"  />
-      </view>    
-    </view>
-
-    <view class="section">
-      <view class="section__title">企业名称 :</view>
-      <view class='form-group'>
-          <input type="text" class="input-text" name="bussinessName"  />
-      </view>    
-    </view>
   
+	<view class="cu-form-group margin-top">
+		<view class="title">化学品名称</view>
+		<input disabled name="{{itemname}}" placeholder="{{itemname}}"></input>
+	</view>
 
-    <view class="section">
+  <view class="cu-form-group">
+    <view class="title">产品批号</view>
+      <input type="text"  name="serialNumber"  />
+  </view>
+ 
+
+  <view class="cu-form-group">
+    <view class="title">企业名称</view>
+      <input type="text"  name="bussinessName"  />
+  </view>
+
+    <!-- <view class="section">
             <view class="section__title">状态选择 :</view>
             <view class='form-group'>
                 <picker bindchange="bindPickerChange" value="{{index}}" range="{{state}}">
                         <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
                 </picker>
             </view>
-        </view>
-
-    <view class="section">
-      <view class="section__title">备注信息 :</view>
-      <view class='form-group'>
-     
-          <textarea style="width:470rpx" class="input-text" name="remark"></textarea>
-      </view>    
+        </view> -->
+        
+      <view class="cu-form-group">
+        <view class="title">状态选择</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{state}}">
+                <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
+        </picker> 
     </view>
 
-     <view class="section">
-      <view class="section__title">位置:</view>
-      <view class='form-group'>
-          <input type="text" class="input-text" name="location" value="{{wd}} {{jd}}" ></input>
-      </view>    
+
+    <view class="cu-form-group align-start">
+      <view class="title">备注信息</view>
+      <textarea maxlength="-1" disabled="{{modalName!=null}}" name="remark" ></textarea>
+    </view>
+
+     <view class="cu-form-group">
+      <view class="title">位置</view>
+          <input disabled type="text"  name="location" value="{{wd}} {{jd}}" ></input>
     </view>
 
     
-    <view class="section btn-area">
-      <button formType="submit">提交</button>
-      <!-- <button formType="reset">清空</button> -->
+
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-green lg" formType="submit">提交</button>
     </view>
+    
 
 
 
