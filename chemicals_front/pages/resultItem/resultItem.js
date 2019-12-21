@@ -21,7 +21,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var data = JSON.parse(options.data);
-
+    // console.log(data.type)
    //这边就要判断是从index页面的随机三个过来的
    //还是从正常搜索的结果页面的result过来的
     
@@ -41,9 +41,9 @@ Page({
 
         },
       })
-    }else{
+    }else {
+      if(data.type=="random"){
       //这边type=random的情况
-
       var index = data.index
       wx.getStorage({
         key: 'randomList',
@@ -60,6 +60,26 @@ Page({
         },
       })
 
+    }else{
+        //type=history_scan
+      var index = data.index
+      wx.getStorage({
+        key: 'history_scan',
+        success: function (res) {
+          var list = res.data
+          that.setData({
+            item: list[index],
+          })
+          //这边由于设置最上边为中文名
+          wx.setNavigationBarTitle({
+            title: list[index].chName
+          })
+
+        },
+      })
+
+
+    }
     }
    
 

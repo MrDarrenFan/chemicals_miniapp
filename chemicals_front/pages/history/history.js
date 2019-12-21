@@ -50,6 +50,25 @@ Page({
 
   },
 
+  gotodetail:function(e){
+      // console.log(e)
+      let that = this
+      var id = e.currentTarget.dataset.index;
+      //用于区别随机的list 区别于type=random
+      var type = "history_scan"
+      var data = {
+        "type": type,
+        "index": id
+      }
+     
+      var dataStr = JSON.stringify(data)
+      wx.navigateTo({
+        url: '../resultItem/resultItem?data=' + dataStr,
+      })
+
+    
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
