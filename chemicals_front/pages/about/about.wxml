@@ -3,7 +3,7 @@
 <view class="cu-bar search bg-white">
   <navigator class="search-form round" url="../search/search">
     <text class="cuIcon-search"></text>
-    <input type="text" disabled="disabled" placeholder="输入 化学品名 或 CAS编号 查询化学品" confirm-type="search"></input>
+    <input type="text" disabled="disabled" placeholder="查询化学品" confirm-type="search"></input>
   </navigator>
   <navigator class="action" url="../QRsearch/QRsearch">
     <image bindtap="QRsearch" style="width:50rpx;height:50rpx" src="../../icons/二维码查询.png"></image>

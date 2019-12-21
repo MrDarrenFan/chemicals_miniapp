@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "化学品查询",
   "usingComponents": {
-    "home-search-bar": "../components/home-search-bar/index",
       "cu-custom": "../../colorui/components/cu-custom"
   }
 }

@@ -12,24 +12,114 @@ Page({
     picker:['中文名', 'CAS号'],
     // 清除键
     isHidden: true,
-    //搜索的内容
+    // 搜索的内容
     text:"",
-    //历史记录
+    // 历史记录
     history:[],
-    //服务器地址
+    // 服务器地址
     serviceurl:"",
-    //符合搜索条件的item 形成的list
-    itemlist:[]
-
+    // 符合搜索条件的item 形成的list
+    itemlist:[],
+    // 是否显示搜索结果
+    isResultHidden: true,
+    // 点进去才记录 的 历史记录
+    history_scan: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    //从缓存中将之前在搜索结果取到
+    var that = this
+    wx.getStorage({
+      key: 'itemlist',
+      success: function (res) {
+        that.setData({
+          itemlist: res.data
+        })
+      },
+    })
+
+    that.setData({
+      serviceurl: app.serviceurl
+    })
+
+    that.getHistory()
   },
 
+  //点击某个条目 进入这个item的具体页
+  gotodetail: function (e) {
+    let that = this
+    var id = e.currentTarget.dataset.index;
+    //用于区别随机的list 区别于type=random
+    var type = "normal"
+    var data = {
+      "type": type,
+      "index": id
+    }
+    this.setHistory(id)
+
+    var dataStr = JSON.stringify(data)
+    wx.navigateTo({
+      url: '../resultItem/resultItem?data=' + dataStr,
+    })
+
+  },
+
+
+  //查看的记录· 点进去才被记录
+  setHistory: function (id) {
+    var history_scan_data = this.data.itemlist[id]
+    var newhistory = [history_scan_data]
+
+    console.log(history_scan_data)
+    let that = this
+    that.getHistory()
+    var history_scan = this.data.history_scan
+    for (var i = 0; i < history_scan.length; i++) {
+      if (history_scan[i].chName == history_scan_data.chName) {
+
+        // console.log("出现相同的")
+        // console.log(history_scan[i].chName)
+        // console.log(history_scan_data.chName)
+        history_scan.splice(i, 1)
+        // console.log("删除了之前出现的")
+        break;
+      }
+    }
+
+    for (var i = 0; i < history_scan.length; i++) {
+      newhistory.push(history_scan[i])
+    }
+    // console.log("新添加了一个")
+    console.log(newhistory)
+    wx.setStorage({
+      key: 'history_scan',
+      data: newhistory
+    })
+
+  },
+
+
+  getHistory: function () {
+    let that = this
+    wx.getStorage({
+      key: 'history_scan',
+      success: function (res) {
+        // var data =JSON.parse(res)
+        // console.log(data)
+        console.log(res)
+        that.setData({
+          history_scan: res.data
+        })
+      },
+      fail: function (res) {
+        console.log("fail")
+      }
+    })
+
+  },
 
   // 选择框
   PickerChange(e) {
@@ -72,22 +162,24 @@ Page({
     that.setData({
       text:value
     })
+    if (value == "" || value == null) {
+      that.setData({
+        isResultHidden:true
+      })
+    }
   },
 
   // 清除输入栏
   onClear:function(e){
-
     let that=this
     that.setData({
-      text:""
+      text:"",
+      isResultHidden: true
     })
   },
 
   //搜索回车执行的函数
   onSearch:function(e){
-   
-    console.log(e)
-
     var detail=e.detail
     var type=this.data.picker[this.data.index]
     var text=detail.value
@@ -101,6 +193,10 @@ Page({
       //按CAS搜索
       this.searchByCAS(text)
     }
+    // 将结果view显示
+    this.setData({
+      isResultHidden:false
+    })
     //将搜索的内容存到历史
     this._saveHistory(type,text)
   },
@@ -167,9 +263,9 @@ btnSearch:function(event){
         }
       
         //跳转到result页面
-        wx.navigateTo({
-          url: '../result/result',
-        })
+        // wx.navigateTo({
+        //   url: '../result/result',
+        // })
 
 
       }
@@ -221,9 +317,9 @@ btnSearch:function(event){
 
         }
         console.log("setlist success")
-        wx.navigateTo({
-          url: '../result/result',
-        })
+        // wx.navigateTo({
+        //   url: '../result/result',
+        // })
 
 
       }

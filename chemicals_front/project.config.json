@@ -140,6 +140,12 @@
 					"pathName": "icons/icon_home",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/history/history",
+					"pathName": "pages/history/history",
+					"scene": null
 				}
 			]
 		}
