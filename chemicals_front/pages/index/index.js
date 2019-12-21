@@ -47,9 +47,19 @@ Page({
   getRandomList:function(list){
     var service = this.data.serviceurl  
     let that=this
+    var str=""
+    for(var i=0;i<list.length;i++){
+      str+=list[i]
+      if(i!=list.length-1){
+        str+=" "
+      }
+    }
+
+    // console.log(str)
     wx.request({
-      url: service + '/chemicals/getThreeByRandom/' + list,
+      url: service + '/chemicals/getThreeByRandom/' + str,
       success: function (res) {
+
         that.setData({
           randomList:res.data
         })
