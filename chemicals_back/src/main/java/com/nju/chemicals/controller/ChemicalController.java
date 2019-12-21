@@ -47,9 +47,9 @@ public class ChemicalController {
 
     // 随机获取三个化学品信息
     @ResponseBody
-    @RequestMapping("/getThreeByRandom/{nameList}")
-    public List<Chemical> getThreeByRandom(@PathVariable List<String> nameList) {
-        return chemicalService.getThreeByRandom(nameList);
+    @RequestMapping("/getThreeByRandom/{nameStr}")
+    public List<Chemical> getThreeByRandom(@PathVariable String nameStr) {
+        return chemicalService.getThreeByRandom(nameStr);
     }
 
 }

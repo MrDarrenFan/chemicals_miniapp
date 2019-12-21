@@ -34,12 +34,18 @@ public class ChemicalService {
     }
 
     // 随机获取三个化学品
-    public List<Chemical> getThreeByRandom(List<String> nameOfLastThree) {
+    public List<Chemical> getThreeByRandom(String nameStr) {
+        String[] oriName = nameStr.split(" ");
+        List<String> lastThreeNames = new ArrayList<>();
+        for (String str : oriName) {
+            lastThreeNames.add(str);
+        }
         List<String> nameInRes = new ArrayList<>();
         List<Chemical> result = new ArrayList<>();
+
         while(result.size() < 3) {
             Chemical chemical = chemicalMapper.selectOneByRandom();
-            if (!nameOfLastThree.contains(chemical.getChName()) && !nameInRes.contains(chemical.getChName())) {
+            if (!lastThreeNames.contains(chemical.getChName()) && !nameInRes.contains(chemical.getChName())) {
                 nameInRes.add(chemical.getChName());
                 result.add(chemical);
             }
