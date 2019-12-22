@@ -18,20 +18,20 @@
     </view>
     <view class="content">
       <view class="desc">
-        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
-          <view class="action">别名</view>
+        <view hidden="{{!haveAlias}}" class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action" style="min-width:4em; justify-content:left">别名</view>
           <view class="action">{{item.alias}}</view>
         </view>
         <view class="cu-bar solids-bottom" style="min-height:80rpx;">
-          <view class="action">英文名</view>
+          <view class="action" style="min-width:4em; justify-content:left">英文名</view>
           <view class="action">{{item.enName}}</view>
         </view>
         <view class="cu-bar solids-bottom" style="min-height:80rpx;">
-          <view class="action">化学式</view>
+          <view class="action" style="min-width:4em; justify-content:left">化学式</view>
           <view class="action">{{item.formula}}</view>
         </view>
         <view class="cu-bar" style="min-height:80rpx;">
-          <view class="action">分子量</view>
+          <view class="action" style="min-width:4em; justify-content:left">分子量</view>
           <view class="action">{{item.weight}}</view>
         </view>
       </view>

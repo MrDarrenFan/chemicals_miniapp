@@ -21,8 +21,8 @@
     "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
-    "color": "bfbfbf",
-    "selectedColor": "#707070",
+    "color": "#707070",
+    "selectedColor": "#000000",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",

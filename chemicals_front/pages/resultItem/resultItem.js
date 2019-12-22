@@ -12,7 +12,8 @@ Page({
   data: {
     //在第一次点击时 重载数据 tap_num 主要用于区别是否第一次点击
     tap_num:0,
-
+    // 当前化学品是否有别名
+    haveAlias: true,
     datalist:[],
 
     item:{},
@@ -36,6 +37,9 @@ Page({
         key: 'itemlist',
         success: function (res) {
           var list = res.data
+          if (list[index].alias == "" || list[index].alias == null) {
+            list[index].alias = "无"
+          }
           that.setData({
             item: list[index],
           })
@@ -43,9 +47,9 @@ Page({
           wx.setNavigationBarTitle({
             title: list[index].chName
           })
-
         },
       })
+
     }else {
       if(data.type=="random"){
       //这边type=random的情况
@@ -54,6 +58,9 @@ Page({
         key: 'randomList',
         success: function (res) {
           var list = res.data
+          if (list[index].alias == "" || list[index].alias == null) {
+            list[index].alias = "无"
+          }
           that.setData({
             item: list[index],
           })
@@ -73,6 +80,9 @@ Page({
         key: 'history_scan',
         success: function (res) {
           var list = res.data
+          if (list[index].alias == "" || list[index].alias == null) {
+            list[index].alias = "无"
+          }
           that.setData({
             item: list[index],
           })
@@ -84,11 +94,10 @@ Page({
         },
       })
 
+    
 
     }
-    }
-   
-
+  }
     
     //以防万一还是将data里的hide初始化为true
     for(var i=0 ;i<9;i++){
@@ -98,11 +107,11 @@ Page({
   },
 
   transform:function(){
-
-    console.log("进入")   
+    console.log(this.data.item)
+    // console.log("进入")   
     let that = this
     var it= this.data.item
-    console.log(it)
+    // console.log(it)
     // var place ='dangerOV'
     var datalist = []
     var attribute = ['property', 'stabAndReact', 'dangerOV', 'dangerCA', 'operAndStore', 'ctrlAndDef', 'firstAid', 'leakTreatment','disposal']
@@ -132,31 +141,7 @@ Page({
       datalist: datalist
     })
 
-    // var pro = it.property
-
    
-    // console.log("dangerOV")
-    // console.log(it)
-    // console.log(pro)
-    // var list=pro.split("\r\n")
-    // console.log(list)
-    // var list_label=[]
-    // var list_content=[]
-    // for(var i=0;i<list.length;i++){
-    //   var tmp=list[i].split("：")
-    //   list_label.push(tmp[0])
-    //   list_content.push(tmp[1])
-    //   var data={
-    //     label:tmp[0],
-    //     content:tmp[1]
-    //   }
-    //   datalist.push(data)
-    // }
-
-    // that.setData({
-     
-    //   datalist: datalist
-    // })
 
 
   },
@@ -216,7 +201,6 @@ Page({
     for (var i = 0; i < 9; i++) {
       this.data.hide[i] = true
     }
-    
   },
 
   /**
