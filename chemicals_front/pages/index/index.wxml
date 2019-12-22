@@ -12,9 +12,9 @@
 
 
 <view>
-  <view class="cu-bar bg-white margin-tb-sm" style="margin-bottom:10rpx;">
+  <view class="cu-bar  margin-tb-sm" style="margin-bottom:10rpx;">
     <view class="action title-style-3">
-      <text class="text-xxl text-bold">猜你不知道</text>
+      <text class="text-xxl text-bold">下面三个你知道吗？</text>
     </view>
     <view class="action">
       <button class="cu-btn round bg-white shadow" bindtap="changeBatch">换一换</button>

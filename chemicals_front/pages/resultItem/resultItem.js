@@ -94,15 +94,14 @@ Page({
     for(var i=0 ;i<9;i++){
       this.data.hide[i]=true
     }
-    // this.tansform()
     
   },
 
-  tansform:function(){
+  transform:function(){
 
     console.log("进入")   
     let that = this
-   var it= this.data.item
+    var it= this.data.item
     console.log(it)
     // var place ='dangerOV'
     var datalist = []
@@ -190,7 +189,7 @@ Page({
   changehide:function(event){
     let that = this
     if(that.data.tap_num==0){
-      that.tansform()
+      that.transform()
       that.data.tap_num++
     }
 

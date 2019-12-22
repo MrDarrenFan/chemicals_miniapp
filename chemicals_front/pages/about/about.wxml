@@ -11,7 +11,7 @@
 </view>
 
 <view>
-<view class="text-grey text-left">
-  {{aboutus}}
-</view>
+  <view class="text-black text-left padding">
+    {{aboutus}}
+  </view>
 </view>

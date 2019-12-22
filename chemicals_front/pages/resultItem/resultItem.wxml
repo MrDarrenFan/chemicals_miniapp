@@ -59,8 +59,8 @@
           </view> 
           <view hidden="{{hide[0]}}" class="padding">
            <view wx:for="{{datalist[0]}}" wx:for-item="item" wx:key="index" >
-             <text class="text-grey">{{item.label}} : </text>
-             <text>{{item.content}}</text>
+             <view class="cu-tag line-black round">{{item.label}}</view>
+             <text class="text-sm">{{item.content}}</text>
             </view>
          
           </view>
@@ -72,8 +72,8 @@
           </view> 
           <view hidden="{{hide[1]}}" class="padding">
             <view wx:for="{{datalist[1]}}" wx:for-item="item" wx:key="index" >
-             <text>{{item.label}} : </text>
-             <text>{{item.content}}</text>
+             <view class="cu-tag bg-orange round">{{item.label}}</view>
+             <text class="text-sm">{{item.content}}</text>
             </view>
           </view>
         </view>
@@ -98,28 +98,28 @@ GHS危害性分类 dangerCA
         <view class="{{hide[2]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="2" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-warn"></view><text decode="true">&nbsp;</text>危险有害性概述
+              <view class="cuIcon-warn"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>危险有害性概述
             </view>
             <view class="action cuIcon-{{hide[2]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[2]}}" class="padding">
              <view wx:for="{{datalist[2]}}" wx:for-item="item" wx:key="index" >
-             <text>{{item.label}} : </text>
-             <text>{{item.content}}</text>
+             <view class="cu-tag bg-red round">{{item.label}}</view>
+             <text class="text-sm">{{item.content}}</text>
             </view>
           </view>
         </view>
         <view class="{{hide[3]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar {{hide[3]?'':'solids-bottom'}}" style="min-height:80rpx;" data-index="3" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-list"></view><text decode="true">&nbsp;</text>GHS危险性分类
+              <view class="cuIcon-list"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>GHS危险性分类
             </view>
             <view class="action cuIcon-{{hide[3]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[3]}}" class="padding">
               <view wx:for="{{datalist[3]}}" wx:for-item="item" wx:key="index" >
-                <text>{{item.label}} : </text>
-                <text>{{item.content}}</text>
+                <view class="cu-tag bg-red round">{{item.label}}</view>
+                <text class="text-sm">{{item.content}}</text>
               </view>
           </view>
         </view>
@@ -145,49 +145,49 @@ GHS危害性分类 dangerCA
         <view class="{{hide[4]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="4" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-deliver"></view><text decode="true">&nbsp;</text>操作处置与储存
+              <view class="cuIcon-deliver"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>操作处置与储存
             </view>
             <view class="action cuIcon-{{hide[4]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[4]}}" class="padding">
              <view wx:for="{{datalist[4]}}" wx:for-item="item" wx:key="index" >
-             <text>{{item.label}} : </text>
-             <text>{{item.content}}</text>
+             <view class="cu-tag line-black round">{{item.label}}</view>
+             <text class="text-sm">{{item.content}}</text>
             </view>
           </view>
         </view>
         <view class="{{hide[5]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="5" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-safe"></view><text decode="true">&nbsp;</text>接触控制 / 个体防护
+              <view class="cuIcon-safe"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>接触控制 / 个体防护
             </view>
             <view class="action cuIcon-{{hide[5]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[5]}}" class="padding">
-             <view wx:for="{{datalist[5]}}" wx:for-item="item" wx:key="index" >
-             <text>{{item.label}} : </text>
-             <text>{{item.content}}</text>
+            <view wx:for="{{datalist[5]}}" wx:for-item="item" wx:key="index" >
+              <view class="cu-tag line-black round">{{item.label}}</view>
+              <text class="text-sm">{{item.content}}</text>
             </view>
           </view>
         </view>
         <view class="{{hide[6]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="6" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-roundadd"></view><text decode="true">&nbsp;</text>急救措施
+              <view class="cuIcon-roundadd"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>急救措施
             </view>
             <view class="action cuIcon-{{hide[6]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[6]}}" class="padding">
-             <view wx:for="{{datalist[6]}}" wx:for-item="item" wx:key="index" >
-             <text>{{item.label}} : </text>
-             <text>{{item.content}}</text>
+            <view wx:for="{{datalist[6]}}" wx:for-item="item" wx:key="index" >
+              <view class="cu-tag line-black round">{{item.label}}</view>
+              <text class="text-sm">{{item.content}}</text>
             </view>
           </view>
         </view>
         <view class="{{hide[7]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="7" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-barcode"></view><text decode="true">&nbsp;</text>泄露应急处理
+              <view class="cuIcon-barcode"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>泄露应急处理
             </view>
             <view class="action cuIcon-{{hide[7]?'unfold':'fold'}}"></view>
           </view> 
@@ -198,7 +198,7 @@ GHS危害性分类 dangerCA
         <view class="{{hide[8]?'':'radius shadow-warp bg-white'}}">
           <view class="cu-bar {{hide[8]?'':'solids-bottom'}}" style="min-height:80rpx;" data-index="8" bindtap="changehide">
             <view class="action">
-              <view class="cuIcon-delete"></view><text decode="true">&nbsp;</text>废弃处置
+              <view class="cuIcon-delete"></view><text decode="true">&nbsp;&nbsp;&nbsp;</text>废弃处置
             </view>
             <view class="action cuIcon-{{hide[8]?'unfold':'fold'}}"></view>
           </view> 
