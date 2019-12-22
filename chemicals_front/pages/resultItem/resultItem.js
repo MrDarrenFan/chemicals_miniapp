@@ -10,6 +10,11 @@ Page({
   
 
   data: {
+    //在第一次点击时 重载数据 tap_num 主要用于区别是否第一次点击
+    tap_num:0,
+
+    datalist:[],
+
     item:{},
     //9个标记值，用于控制内容是否显示
     hide: [true, true, true, true, true, true, true, true, true],
@@ -56,6 +61,7 @@ Page({
           wx.setNavigationBarTitle({
             title: list[index].chName
           })
+          
 
         },
       })
@@ -88,11 +94,75 @@ Page({
     for(var i=0 ;i<9;i++){
       this.data.hide[i]=true
     }
+    // this.tansform()
+    
+  },
 
+  tansform:function(){
 
+    console.log("进入")   
+    let that = this
+   var it= this.data.item
+    console.log(it)
+    // var place ='dangerOV'
+    var datalist = []
+    var attribute = ['property', 'stabAndReact', 'dangerOV', 'dangerCA', 'operAndStore', 'ctrlAndDef', 'firstAid', 'leakTreatment','disposal']
+    // var pl = attribute[0]
+    // console.log(it.property)
+    // console.log(it[pl])
+    for(var i=0;i<attribute.length;i++){
+      var list_item=[]
+      var pl = attribute[i]
+      var origindata = it[pl]
+      console.log(origindata)
+      var list = origindata.split("\r\n")
+      for(var j=0;j<list.length;j++){
+        var tmp = list[j].split("：")
+        var data_single = {
+          label: tmp[0],
+          content: tmp[1]
+        }
+        list_item.push(data_single)
+      }
+      datalist.push(list_item)
+
+    }
+
+    that.setData({
+
+      datalist: datalist
+    })
+
+    // var pro = it.property
 
    
+    // console.log("dangerOV")
+    // console.log(it)
+    // console.log(pro)
+    // var list=pro.split("\r\n")
+    // console.log(list)
+    // var list_label=[]
+    // var list_content=[]
+    // for(var i=0;i<list.length;i++){
+    //   var tmp=list[i].split("：")
+    //   list_label.push(tmp[0])
+    //   list_content.push(tmp[1])
+    //   var data={
+    //     label:tmp[0],
+    //     content:tmp[1]
+    //   }
+    //   datalist.push(data)
+    // }
+
+    // that.setData({
+     
+    //   datalist: datalist
+    // })
+
+
   },
+
+
 
 //点击信息上传
   uploadinfo:function(){
@@ -119,6 +189,12 @@ Page({
 //比如点击理化特性，具体内容显示，再点击，又不显示
   changehide:function(event){
     let that = this
+    if(that.data.tap_num==0){
+      that.tansform()
+      that.data.tap_num++
+    }
+
+    // let that = this
     
     var id = parseInt(event.currentTarget.dataset.index)
     var obj=this.data.hide
@@ -130,6 +206,7 @@ Page({
     this.setData({
       hide:obj,
     })
+
     
   },
 
@@ -140,6 +217,7 @@ Page({
     for (var i = 0; i < 9; i++) {
       this.data.hide[i] = true
     }
+    
   },
 
   /**

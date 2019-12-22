@@ -39,6 +39,7 @@
   </view>
 </view>
 
+
 <!-- 理化特性   property 
 稳定性和反应性 stabAndReact
  -->
@@ -57,7 +58,11 @@
             <view class="action cuIcon-{{hide[0]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[0]}}" class="padding">
-            <text decode="true"> {{item.property}}</text>
+           <view wx:for="{{datalist[0]}}" wx:for-item="item" wx:key="index" >
+             <text class="text-grey">{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
+         
           </view>
         </view>
         <view class="{{hide[1]?'':'radius shadow-warp bg-white'}}">
@@ -66,7 +71,10 @@
             <view class="action cuIcon-{{hide[1]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[1]}}" class="padding">
-            <text decode="true"> {{item.stabAndReact}}</text>
+            <view wx:for="{{datalist[1]}}" wx:for-item="item" wx:key="index" >
+             <text>{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
           </view>
         </view>
       </view>
@@ -95,7 +103,10 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[2]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[2]}}" class="padding">
-            <text decode="true"> {{item.dangerOV}}</text>
+             <view wx:for="{{datalist[2]}}" wx:for-item="item" wx:key="index" >
+             <text>{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
           </view>
         </view>
         <view class="{{hide[3]?'':'radius shadow-warp bg-white'}}">
@@ -106,7 +117,10 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[3]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[3]}}" class="padding">
-            <text decode="true"> {{item.dangerCA}}</text>
+              <view wx:for="{{datalist[3]}}" wx:for-item="item" wx:key="index" >
+                <text>{{item.label}} : </text>
+                <text>{{item.content}}</text>
+              </view>
           </view>
         </view>
       </view>
@@ -136,7 +150,10 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[4]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[4]}}" class="padding">
-            <text decode="true"> {{item.operAndStore}}</text>
+             <view wx:for="{{datalist[4]}}" wx:for-item="item" wx:key="index" >
+             <text>{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
           </view>
         </view>
         <view class="{{hide[5]?'':'radius shadow-warp bg-white'}}">
@@ -147,7 +164,10 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[5]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[5]}}" class="padding">
-            <text decode="true"> {{item.ctrlAndDef}}</text>
+             <view wx:for="{{datalist[5]}}" wx:for-item="item" wx:key="index" >
+             <text>{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
           </view>
         </view>
         <view class="{{hide[6]?'':'radius shadow-warp bg-white'}}">
@@ -158,7 +178,10 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[6]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[6]}}" class="padding">
-            <text decode="true"> {{item.firstAid}}</text>
+             <view wx:for="{{datalist[6]}}" wx:for-item="item" wx:key="index" >
+             <text>{{item.label}} : </text>
+             <text>{{item.content}}</text>
+            </view>
           </view>
         </view>
         <view class="{{hide[7]?'':'radius shadow-warp bg-white'}}">
@@ -169,7 +192,7 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[7]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[7]}}" class="padding">
-            <text decode="true"> {{item.leakTreatment}}</text>
+            <text>{{item.leakTreatment}}</text>
           </view>
         </view>
         <view class="{{hide[8]?'':'radius shadow-warp bg-white'}}">
@@ -180,7 +203,7 @@ GHS危害性分类 dangerCA
             <view class="action cuIcon-{{hide[8]?'unfold':'fold'}}"></view>
           </view> 
           <view hidden="{{hide[8]}}" class="padding">
-            <text decode="true"> {{item.disposal}}</text>
+             <text>{{item.disposal}}</text>
           </view>
         </view>
       </view>
