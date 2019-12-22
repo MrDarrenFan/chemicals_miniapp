@@ -34,20 +34,13 @@ Page({
   onLoad: function (options) {
     //从缓存中将之前的搜索结果取到
     var that = this
-    wx.getStorage({
-      key: 'itemlist',
-      success: function (res) {
-        that.setData({
-          itemlist: res.data
-        })
-      },
-    })
+ 
 
     that.setData({
       serviceurl: app.serviceurl
     })
 
-    that.getHistory()
+    that._getHistory()
   },
 
   //点击某个条目 进入这个item的具体页
@@ -60,7 +53,7 @@ Page({
       "type": type,
       "index": id
     }
-    this.setHistory(id)
+    this.setHistory_scan(id)
 
     var dataStr = JSON.stringify(data)
     wx.navigateTo({
@@ -71,29 +64,36 @@ Page({
 
 
   //查看的记录· 点进去才被记录
-  setHistory: function (id) {
+  setHistory_scan: function (id) {
     var history_scan_data = this.data.itemlist[id]
+    console.log("发现请求 请求为")
+    console.log(history_scan_data)
     var newhistory = [history_scan_data]
 
-    console.log(history_scan_data)
+    // console.log(history_scan_data)
     let that = this
-    that.getHistory()
+    that.getHistory_scan()
     var history_scan = this.data.history_scan
-    for (var i = 0; i < history_scan.length; i++) {
-      if (history_scan[i].chName == history_scan_data.chName) {
+    if (history_scan != [] || history_scan!=null){
+      for (var i = 0; i < history_scan.length; i++) {
+        if (history_scan[i].chName == history_scan_data.chName) {
 
-        // console.log("出现相同的")
-        // console.log(history_scan[i].chName)
-        // console.log(history_scan_data.chName)
-        history_scan.splice(i, 1)
-        // console.log("删除了之前出现的")
-        break;
+          console.log("出现相同的")
+          console.log(history_scan[i].chName)
+          console.log(history_scan_data.chName)
+          history_scan.splice(i, 1)
+          // console.log("删除了之前出现的")
+          break;
+        }
       }
     }
-
     for (var i = 0; i < history_scan.length; i++) {
       newhistory.push(history_scan[i])
     }
+    that.setData({
+      history_scan:newhistory
+    })
+
     // console.log("新添加了一个")
     console.log(newhistory)
     wx.setStorage({
@@ -104,7 +104,7 @@ Page({
   },
 
 
-  getHistory: function () {
+  getHistory_scan: function () {
     let that = this
     wx.getStorage({
       key: 'history_scan',
@@ -187,9 +187,17 @@ Page({
 
   //搜索回车执行的函数
   onSearch:function(e){
+    let that= this
+    
+    that.data.itemlist=[]
+    console.log("此时的itemlist")
+    console.log(that.data.itemlist)
     var detail=e.detail
     var type=this.data.picker[this.data.index]
     var text=detail.value
+
+    console.log("传的是")
+    console.log(text)
     //type有两种 中文名和cas号
     if(text == null || text == "") {
       return
@@ -202,6 +210,14 @@ Page({
     }
     //将搜索的内容存到历史
     this._saveHistory(type,text)
+    console.log("再次设置")
+    console.log(this.data.itemlist)
+
+    // that.setData({
+    //   isResultHidden: false,
+    //   isLogHidden: true
+    // })
+  
   },
  
 //搜索按键点击事件
@@ -220,6 +236,7 @@ btnSearch:function(event){
 
 //按中文名搜索
   searchByCHName: function (text) {
+    let that = this
     var service=this.data.serviceurl
     wx.request({
       method: 'GET',
@@ -248,8 +265,14 @@ btnSearch:function(event){
             tmp[i] = JSON.parse(tmp[i])
           }
 
+          console.log("收到的是")
+          console.log(tmp)
 
-          // 将调整好的的数组tmp 设置到itemlist
+          that.setData({
+            itemlist:tmp
+          })
+
+         // 将调整好的的数组tmp 设置到itemlist
           wx.setStorage({
             key: 'itemlist',
             data: tmp,
@@ -258,10 +281,16 @@ btnSearch:function(event){
         }else{
 
           //没有查到所搜索的内容，就设置为空
+          that.data.itemlist = []
+          // console.log("没搜到的情况 itemlist")
+         
+          // console.log(that.data.itemlist)
+          // console.log(that.data.itemlist.length)
           wx.setStorage({
             key: 'itemlist',
             data: [],
           })
+        
           
         }
       
@@ -273,14 +302,19 @@ btnSearch:function(event){
 
       }
     })
-
-
+    //再次清空
+    that.setData({
+      itemlist:[],
+      isResultHidden: false,
+      isLogHidden: true
+    })
    
 
   },
 
 //按cas搜索
-  searchByCAS:function(text){
+  searchByCAS:function(text){ 
+    let that = this
     var service = this.data.serviceurl
     wx.request({
       method: 'GET',
@@ -307,19 +341,33 @@ btnSearch:function(event){
             tmp[i] = JSON.parse(tmp[i])
           }
 
+          that.setData({
+            itemlist: tmp
+          })
+
           wx.setStorage({
             key: 'itemlist',
             data: tmp,
           })
         } else {
           //没有查到所搜索的内容
+
+
+          
+            that.data.itemlist=[]
+          // console.log("没搜到的情况 itemlist")
+
+          // console.log(that.data.itemlist)
+          // console.log(that.data.itemlist.length)
+        
+          
           wx.setStorage({
             key: 'itemlist',
             data: [],
           })
 
         }
-        console.log("setlist success")
+        // console.log("setlist success")
         // wx.navigateTo({
         //   url: '../result/result',
         // })
@@ -327,6 +375,12 @@ btnSearch:function(event){
 
       }
     })   
+    //再次清空
+    that.setData({
+      itemlist: [],
+      isResultHidden: false,
+      isLogHidden: true
+    })
 
   },
 
@@ -390,6 +444,7 @@ btnSearch:function(event){
     console.log(this.data.serviceurl)
 
     searchBar = this.selectComponent('#searchBar')
+
   },
 
   /**
