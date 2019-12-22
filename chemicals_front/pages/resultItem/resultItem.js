@@ -108,7 +108,7 @@ Page({
 
   transform:function(){
     console.log(this.data.item)
-    // console.log("进入")   
+    console.log("进入")   
     let that = this
     var it= this.data.item
     // console.log(it)

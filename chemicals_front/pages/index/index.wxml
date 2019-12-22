@@ -30,8 +30,11 @@
         <view class="desc">
           <view class="text-content text-sl">{{item.formula}}</view>
           <view>
-            <view class="cu-tag bg-red light sm round">危险品1类</view>
-            <view class="cu-tag bg-red light sm round">危险品2类</view>
+            <view wx:for="{{alltag[index]}}" wx:for-item="tagitem" style="display:flex; flex-direction:row; flex-wrap:wrap; ">
+                <view wx:for="{{tagitem}}" wx:for-item="tag"  >
+                  <view style="margin: 4rpx 6rpx 4rpx 6rpx" class="cu-tag bg-red light round">{{tag}}</view>
+                </view>
+            </view>  
           </view>
         </view>
       </view>

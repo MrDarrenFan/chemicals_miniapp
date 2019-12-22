@@ -12,7 +12,9 @@ Page({
     serviceurl:'',
 
     //页面开始 随机的3个化学品的list
-    randomList:[]
+    randomList:[],
+
+    alltag:[]
   },
 
  //进入到搜索页面
@@ -63,6 +65,8 @@ Page({
         that.setData({
           randomList:res.data
         })
+        that.transform()
+        
         wx.setStorage({
           key: 'randomList',
           data: res.data,
@@ -108,6 +112,68 @@ Page({
     })
 
   },
+
+  transform: function () {
+    console.log(this.data.randomList)
+    console.log("进入")   
+
+    let that = this
+    var alltag=[]
+    var ranit = this.data.randomList
+    var max_count=8
+  
+    for (var t = 0; t < ranit.length;t++){
+      var count = 0
+      var taglist = []
+      var attribute = ['dangerCA']
+      var flag = false
+      for (var i = 0; i < attribute.length; i++) {
+        // var list_item = []
+        
+        var pl = attribute[i]
+       
+        var origindata = ranit[t][pl]
+    
+        var list = origindata.split("\r\n")
+        for (var j = 0; j < list.length; j++) {
+          var tmp = list[j].split("：")
+         
+          if(count>=max_count){
+            flag=true
+            break;
+          }
+          taglist.push(tmp[0])
+          count++;
+        }
+        if(flag){
+          break;
+        }
+      }
+      
+      // alltag.push[taglist]
+      var data={
+        'tag': taglist
+      }
+      alltag.push(data)
+  
+    }
+
+
+    
+  
+    // var place ='dangerOV'
+    
+
+    that.setData({
+
+      alltag: alltag
+    })
+
+
+
+
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
