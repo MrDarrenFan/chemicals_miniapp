@@ -145,6 +145,13 @@
 					"id": -1,
 					"name": "pages/history/history",
 					"pathName": "pages/history/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/infoUpload/infoUpload",
+					"pathName": "pages/infoUpload/infoUpload",
 					"scene": null
 				}
 			]

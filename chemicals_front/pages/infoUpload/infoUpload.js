@@ -13,7 +13,7 @@ Page({
     wd: "",
     jd: "",
     //状态
-    state: ["生产", "存储", "运输","经营","使用","废除"],
+    state: ["生产","存储","运输","经营","使用","废除"],
     //确认提示框
     toast1Hidden: true,
     modalHidden: true,
@@ -138,7 +138,7 @@ Page({
     this.setData({
       modalHidden: true,
       toast1Hidden: false,
-      notice_str: '取消成功'
+      notice_str: '已取消'
     });
 
   },
@@ -156,7 +156,7 @@ uploadFailure:function(){
   this.setData({
     modalHidden: true,
     toast1Hidden: false,
-    notice_str: '上传失败，请稍后重传'
+    notice_str: '上传失败，请稍后重试'
   });
 },
 

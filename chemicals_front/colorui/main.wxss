@@ -2428,7 +2428,7 @@ button.icon.lg {
 .cu-form-group picker::after {
 	font-family: "cuIcon";
 	display: block;
-	content: "\e6a3";
+	/* content: "\e6a3"; */
 	position: absolute;
 	font-size: 34rpx;
 	color: var(--grey);

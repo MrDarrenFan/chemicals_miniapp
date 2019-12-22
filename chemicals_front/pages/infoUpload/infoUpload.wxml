@@ -26,12 +26,12 @@
             </view>
         </view> -->
         
-      <view class="cu-form-group">
+      <view class="cu-form-group margin-top">
         <view class="title">状态选择</view>
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{state}}">
           <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
         </picker> 
-    </view>
+      </view>
 
 
     <view class="cu-form-group align-start">
