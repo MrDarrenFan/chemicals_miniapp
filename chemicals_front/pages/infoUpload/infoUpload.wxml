@@ -29,7 +29,7 @@
       <view class="cu-form-group">
         <view class="title">状态选择</view>
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{state}}">
-                <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
+          <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
         </picker> 
     </view>
 
@@ -61,8 +61,7 @@
 
     <!-- 确认框 及 提示框 -->
     <view class="page__bd">
-        <modal title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">
-            确认提交么？
+        <modal title="是否确认无误？" confirm-text="确认" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">
         </modal>
         <!---这边是清空键的提示框-->
         <!-- <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2"      bindcancel="modalChange2">

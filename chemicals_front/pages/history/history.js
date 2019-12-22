@@ -38,8 +38,8 @@ Page({
   clearHistory:function(){
 
     wx.showModal({
-      title: '清除搜索记录',
-      content: '确定清除所有搜索历史？这项操作将无法撤销',
+      title: '清除查看记录',
+      content: '确定清除所有的查看记录？这项操作将无法撤销',
       success: res => {
         if (res.confirm) {
           wx.removeStorage({ key: 'history_scan' })

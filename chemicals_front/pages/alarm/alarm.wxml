@@ -30,10 +30,8 @@
     </toast>
     <!-- 确认框 及 提示框 -->
     <view class="page__bd">
-        <modal title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">
-            确认报警么？
+        <modal title="是否确认无误？" confirm-text="确认" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">
         </modal>
-     
     </view>
 
     </form>
