@@ -8,7 +8,8 @@ Page({
   data: {
     //产品名称
     itemname:"",
-
+    //记录第一次状态选择 初次显示请选择
+    fis_tap:0,
     //经纬度
     wd: "",
     jd: "",
@@ -174,6 +175,12 @@ uploadFailure:function(){
 
 //对状态的选择
   bindPickerChange: function (e) {
+
+    if (this.data.fis_tap==0){
+      this.setData({
+        fis_tap:1
+      })
+    }
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value

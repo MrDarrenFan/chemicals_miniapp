@@ -29,7 +29,7 @@
       <view class="cu-form-group margin-top">
         <view class="title">状态选择</view>
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{state}}">
-          <input type="hidden" disabled="true" name="state" value="{{state[index]}}"/>
+          <input type="text" disabled="true" name="state" value="{{fis_tap==0?'请选择':state[index]}}"/>
         </picker> 
       </view>
 
