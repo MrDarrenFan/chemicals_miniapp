@@ -43,14 +43,11 @@
 
 <!-- 查询结果 -->
 <view class="bg-white" hidden="{{isResultHidden}}" style="width:100%; height:90%; position:absolute; top:50px;">
-  <view class="weui-cells__tips text-center text-xl" style="margin-top:80px"  wx:if="{{itemlist.length==0 || itemlist==null}}">未查询到相关化学品信息</view>
-  <view wx:else>
-    <view class="weui-cells weui-cells_after-title" wx:for="{{itemlist}}"  wx:for-item="item" wx:key="index" >
-   
-      <view class="cu-bar bg-white text-df" data-index="{{index}}"  bindtap="gotodetail">
-        <text class="text-black" style="margin-left:50rpx;">{{item.chName}}</text>
-        <text class="text-black" style="margin-right:50rpx;">{{item.cas}}</text>
-      </view>
+  <view hidden="{{notHaveResult}}" class="weui-cells__tips text-center text-xl" style="margin-top:80px">未查询到相关化学品信息</view>
+  <view hidden="{{haveResult}}" class="weui-cells weui-cells_after-title" wx:for="{{itemlist}}"  wx:for-item="item" wx:key="index" >
+    <view class="cu-bar bg-white text-df" data-index="{{index}}"  bindtap="gotodetail">
+      <text class="text-black" style="margin-left:50rpx;">{{item.chName}}</text>
+      <text class="text-black" style="margin-right:50rpx;">{{item.cas}}</text>
     </view>
   </view>
 </view>

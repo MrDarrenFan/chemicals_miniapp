@@ -21,7 +21,10 @@ Page({
     // 服务器地址
     serviceurl:"",
     // 符合搜索条件的item 形成的list
-    itemlist:[{'1':"1"}],
+    itemlist:[],
+    // 根据搜索结果选择显示哪个view
+    haveResult: false,
+    notHaveResult: true,
     // 是否显示搜索结果
     isResultHidden: true,
     // 点进去才记录 的 历史记录
@@ -265,11 +268,10 @@ btnSearch:function(event){
             tmp[i] = JSON.parse(tmp[i])
           }
 
-          console.log("收到的是")
-          console.log(tmp)
-
           that.setData({
-            itemlist:tmp
+            itemlist:tmp,
+            haveResult: false,
+            notHaveResult: true
           })
 
          // 将调整好的的数组tmp 设置到itemlist
@@ -281,7 +283,14 @@ btnSearch:function(event){
         }else{
 
           //没有查到所搜索的内容，就设置为空
-          that.data.itemlist = []
+          that.setData({
+            itemlist: [],
+            haveResult: true,
+            notHaveResult: false
+          })
+          // that.data.itemlist = []
+          console.log(that.data.haveResult)
+          console.log(that.data.notHaveResult)
           // console.log("没搜到的情况 itemlist")
          
           // console.log(that.data.itemlist)
@@ -341,8 +350,13 @@ btnSearch:function(event){
             tmp[i] = JSON.parse(tmp[i])
           }
 
+          that.data.haveResult = false
+          that.data.notHaveResult = true
+
           that.setData({
-            itemlist: tmp
+            itemlist: tmp,
+            haveResult: false,
+            notHaveResult: true
           })
 
           wx.setStorage({
@@ -351,10 +365,14 @@ btnSearch:function(event){
           })
         } else {
           //没有查到所搜索的内容
-
-
-          
-            that.data.itemlist=[]
+          that.setData({
+            itemlist: [],
+            haveResult: true,
+            notHaveResult: false
+          })
+            
+            // that.data.haveResult=true
+            // that.data.notHaveResult = false
           // console.log("没搜到的情况 itemlist")
 
           // console.log(that.data.itemlist)

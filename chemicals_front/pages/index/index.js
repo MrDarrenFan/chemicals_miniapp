@@ -114,8 +114,8 @@ Page({
   },
 
   transform: function () {
-    console.log(this.data.randomList)
-    console.log("进入")   
+    // console.log(this.data.randomList)
+    
 
     let that = this
     var alltag=[]
