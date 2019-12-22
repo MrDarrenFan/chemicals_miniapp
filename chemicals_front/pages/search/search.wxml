@@ -1,19 +1,21 @@
-<view class="cu-bar search bg-white solid-bottom" bindsearch="onSearch">
-  <picker style="margin:0rpx 10rpx 0rpx 20rpx;" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-    <view class="picker">
-      <text class="text-black">{{index?picker[index]:'中文名'}}</text>
-      <text class="cuIcon-triangledownfill" style="margin-left:5rpx;"></text>
+<view style="position:fixed ; top:0px; width:100%">
+  <view class="cu-bar search bg-white solid-bottom" bindsearch="onSearch">
+    <picker style="margin:0rpx 10rpx 0rpx 20rpx;" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        <text class="text-black">{{index?picker[index]:'中文名'}}</text>
+        <text class="cuIcon-triangledownfill" style="margin-left:5rpx;"></text>
+      </view>
+    </picker>
+    <view class="search-form round" style="margin-left:0px;" >
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="{{place}}" value="{{text}}" confirm-type="search" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onSearch" bindinput="inputTyping" ></input>
+      <view class="text-xl">
+        <view class="cuIcon-roundclose" hidden="{{isHidden}}" bindtap="onClear"></view>
+      </view>
     </view>
-  </picker>
-  <view class="search-form round" style="margin-left:0px;" >
-    <text class="cuIcon-search"></text>
-    <input type="text" placeholder="{{place}}" value="{{text}}" confirm-type="search" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onSearch" bindinput="inputTyping" ></input>
-    <view class="text-xl">
-      <view class="cuIcon-roundclose" hidden="{{isHidden}}" bindtap="onClear"></view>
+    <view class="action">
+      <button class="cu-btn bg-white shadow text-black round" data-value="{{text}}" bindtap="btnSearch">搜索</button>
     </view>
-  </view>
-  <view class="action">
-    <button class="cu-btn bg-white shadow text-black round" data-value="{{text}}" bindtap="btnSearch">搜索</button>
   </view>
 </view>
 
@@ -21,16 +23,18 @@
 <!-- <home-search-bar id="searchBar" bindcancel="onCancel"  bindsearch="onSearch"></home-search-bar> -->
 
 <!-- 历史记录和删除按钮 -->
-<view class="cu-bar bg-white text-df">
-  <text class="text-black" style="margin-left:30rpx;">历史记录</text>
-  <view class="action">
-    <image bindtap="clearHistory" style="width:30rpx;height:30rpx" src="../../icons/删除.png"></image>
+<view hidden="{{isLogHidden}}" style="position:fixed; top:50px; width:100%">
+  <view class="cu-bar bg-white text-df">
+    <text class="text-black" style="margin-left:30rpx;">历史记录</text>
+    <view class="action">
+      <image bindtap="clearHistory" style="width:30rpx;height:30rpx" src="../../icons/删除.png"></image>
+    </view>
   </view>
 </view>
 
 <!-- 历史记录每一项 -->
-<view style="display:flex; flex-direction:row; flex-wrap:wrap;">
-  <view class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >
+<view style="display:flex; flex-direction:row; flex-wrap:wrap; position:absolute; top:100px;">
+  <view hidden="{{isLogHidden}}" class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >
     <view class="bg-white">
       <view class="margin-left cu-tag round" style="margin-bottom:20rpx">{{item.value}}</view>
     </view>
@@ -38,8 +42,8 @@
 </view>
 
 <!-- 查询结果 -->
-<view class="bg-white" hidden="{{isResultHidden}}" style="width:100%; height:100%; position:absolute; top:50px;">
-  <view class="weui-cells__tips"  wx:if="{{itemlist.length==0}}" >没有搜到相关内容</view>
+<view class="bg-white" hidden="{{isResultHidden}}" style="width:100%; height:90%; position:absolute; top:50px;">
+  <view class="weui-cells__tips text-center text-xl" style="margin-top:80px"  wx:if="{{itemlist.length==0}}">未查询到相关化学品信息</view>
   <view wx:else>
     <view class="weui-cells weui-cells_after-title" wx:for="{{itemlist}}"  wx:for-item="item" wx:key="index" >
       <view data-index="{{index}}"  bindtap="gotodetail" class="weui-panel__hd font-black-34" style="flex">化学品名称:{{item.chName}}  CAS号:{{item.cas}}</view> 

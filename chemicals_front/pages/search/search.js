@@ -16,6 +16,8 @@ Page({
     text:"",
     // 历史记录
     history:[],
+    // 历史记录是否隐藏
+    isLogHidden: false,
     // 服务器地址
     serviceurl:"",
     // 符合搜索条件的item 形成的list
@@ -30,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //从缓存中将之前在搜索结果取到
+    //从缓存中将之前的搜索结果取到
     var that = this
     wx.getStorage({
       key: 'itemlist',
@@ -138,6 +140,9 @@ Page({
     var data={
       'detail':e.currentTarget.dataset
     }
+    this.setData({
+      text: e.currentTarget.dataset.value
+    })
     this.onSearch(data)
   },
 
@@ -164,7 +169,8 @@ Page({
     })
     if (value == "" || value == null) {
       that.setData({
-        isResultHidden:true
+        isResultHidden: true,
+        isLogHidden: false
       })
     }
   },
@@ -174,7 +180,8 @@ Page({
     let that=this
     that.setData({
       text:"",
-      isResultHidden: true
+      isResultHidden: true,
+      isLogHidden: false
     })
   },
 
@@ -193,10 +200,6 @@ Page({
       //按CAS搜索
       this.searchByCAS(text)
     }
-    // 将结果view显示
-    this.setData({
-      isResultHidden:false
-    })
     //将搜索的内容存到历史
     this._saveHistory(type,text)
   },
@@ -218,7 +221,6 @@ btnSearch:function(event){
 //按中文名搜索
   searchByCHName: function (text) {
     var service=this.data.serviceurl
-
     wx.request({
       method: 'GET',
       url: service + '/chemicals/getByCHName/'+text,
@@ -252,6 +254,7 @@ btnSearch:function(event){
             key: 'itemlist',
             data: tmp,
           })
+          
         }else{
 
           //没有查到所搜索的内容，就设置为空
