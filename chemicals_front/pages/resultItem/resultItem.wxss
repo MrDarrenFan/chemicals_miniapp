@@ -1,5 +1,9 @@
 /* pages/resultItem/resultItem.wxss */
 
+page {
+	background-color: #f5f5f5;
+}
+
 .btn-panel{
   padding: 50rpx;
   display:flex;justify-content:space-around;

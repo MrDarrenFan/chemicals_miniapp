@@ -12,7 +12,7 @@ Page({
   data: {
     item:{},
     //9个标记值，用于控制内容是否显示
-    hide: [true, true, true, true, true, true, true, true, true]
+    hide: [true, true, true, true, true, true, true, true, true],
   },
 
   /**
@@ -124,11 +124,11 @@ Page({
     var obj=this.data.hide
     for(var i=0;i<9;i++){
       if(i==id){
-        obj[i]=!obj[i]
+        obj[i] = !obj[i]
       }
     }
     this.setData({
-      hide:obj
+      hide:obj,
     })
     
   },

@@ -1,45 +1,117 @@
 <!--pages/resultItem/resultItem.wxml-->
 
-<view class="weui-cells weui-cells_after-title">
-  <view class="weui-panel__hd font-black-34">化学品名称:{{item.chName}}</view>
-  <view class="weui-panel__hd font-black-34">CAS号:{{item.cas}}</view>
-  <view class="weui-panel__hd font-black-34">化学式：{{item.formula}}</view>
-  <view class="weui-panel__hd font-black-34">相对原子质量：{{item.weight}}</view>
-  
+<view class="cu-bar">
+  <view class="action" style="margin-left:50rpx">
+    <text class="text-bold text-xl">{{item.chName}}</text>
+  </view>
+  <view class="action" style="margin-right:50rpx">
+    <text class="text-bold text-df">CAS：{{item.cas}}</text>
+  </view>
 </view>
+
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="cu-bar">
+      <view class="title">
+        <text class="cuIcon-title text-black"></text>基本信息
+      </view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action">别名</view>
+          <view class="action">{{item.alias}}</view>
+        </view>
+        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action">英文名</view>
+          <view class="action">{{item.enName}}</view>
+        </view>
+        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action">化学式</view>
+          <view class="action">{{item.formula}}</view>
+        </view>
+        <view class="cu-bar" style="min-height:80rpx;">
+          <view class="action">分子量</view>
+          <view class="action">{{item.weight}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
 <!-- 理化特性   property 
 稳定性和反应性 stabAndReact
+ -->
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="cu-bar">
+      <view class="title">
+        <text class="cuIcon-title text-black"></text>特性
+      </view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="{{hide[0]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="0" bindtap="changehide">
+            <view class="action">理化特性</view>
+            <view class="action cuIcon-{{hide[0]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[0]}}" class="padding">
+            <text decode="true"> {{item.property}}</text>
+          </view>
+        </view>
+        <view class="{{hide[1]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar {{hide[1]?'':'solids-bottom'}}" style="min-height:80rpx;" data-index="1" bindtap="changehide">
+            <view class="action">稳定性和反应性</view>
+            <view class="action cuIcon-{{hide[1]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[1]}}" class="padding">
+            <text decode="true"> {{item.stabAndReact}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 
 危险有害性概述 dangerOV
 GHS危害性分类 dangerCA
  -->
-<view class="weui-cells ">
-      <view>
-        <view class="weui-panel__hd font-black-34 " data-index="0" bindtap="changehide">理化特性</view>
-         <view  hidden="{{hide[0]}}">
-         <text decode="true"> {{item.property}}</text>
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="cu-bar">
+      <view class="title">
+        <text class="cuIcon-title text-black"></text>危险信息
+      </view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="{{hide[2]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="2" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-warn"></view><text decode="true">&nbsp;</text>危险有害性概述
+            </view>
+            <view class="action cuIcon-{{hide[2]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[2]}}" class="padding">
+            <text decode="true"> {{item.dangerOV}}</text>
+          </view>
         </view>
-      </view> 
-
-      <view>
-        <view class="weui-panel__hd font-black-34 " data-index="1" bindtap="changehide">稳定性和反应性</view>
-         <view hidden="{{hide[1]}}">
-          <text decode="true"> {{item.stabAndReact}}</text>
-         </view>
-      </view> 
-
-       <view>
-        <view class="weui-panel__hd font-black-34 " data-index="2"  bindtap="changehide">危险有害性概述</view>
-         <view hidden="{{hide[2]}}">
-          <text decode="true"> {{item.dangerOV}}</text>
-         </view>
-      </view> 
-
-       <view>
-        <view class="weui-panel__hd font-black-34 " data-index="3" bindtap="changehide">GHS危害性分类</view>
-         <view hidden="{{hide[3]}}">
-          <text decode="true">{{item.dangerCA}}</text>
+        <view class="{{hide[3]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar {{hide[3]?'':'solids-bottom'}}" style="min-height:80rpx;" data-index="3" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-list"></view><text decode="true">&nbsp;</text>GHS危险性分类
+            </view>
+            <view class="action cuIcon-{{hide[3]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[3]}}" class="padding">
+            <text decode="true"> {{item.dangerCA}}</text>
+          </view>
         </view>
-      </view> 
+      </view>
+    </view>
+  </view>
 </view>
 
 <!-- 操作处置与储存 operAndStore
@@ -47,49 +119,74 @@ GHS危害性分类 dangerCA
 急救措施 firstAid
 泄露应急处理 leakTreatment
 废弃处置 disposal -->
-<view class="weui-cells ">
-  <view>
-        <view class="weui-panel__hd font-black-34 " data-index="4" bindtap="changehide">操作处置与储存</view>
-         <view hidden="{{hide[4]}}">
-          <text decode="true"> {{item.operAndStore}}</text>
-         </view>
-      </view> 
-
-       <view>
-        <view class="weui-panel__hd font-black-34 " data-index="5" bindtap="changehide">接触控制/个体防护</view>
-         <view hidden="{{hide[5]}}">
-          <text decode="true"> {{item.ctrlAndDef}}</text>
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="cu-bar">
+      <view class="title">
+        <text class="cuIcon-title text-black"></text>操作、存储与防控
+      </view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="{{hide[4]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="4" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-deliver"></view><text decode="true">&nbsp;</text>操作处置与储存
+            </view>
+            <view class="action cuIcon-{{hide[4]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[4]}}" class="padding">
+            <text decode="true"> {{item.operAndStore}}</text>
           </view>
-      </view> 
-
-      <view>
-        <view class="weui-panel__hd font-black-34 " data-index="6"  bindtap="changehide">急救措施</view>
-         <view hidden="{{hide[6]}}">
-          <text decode="true"> {{item.firstAid}}</text>
+        </view>
+        <view class="{{hide[5]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="5" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-safe"></view><text decode="true">&nbsp;</text>接触控制 / 个体防护
+            </view>
+            <view class="action cuIcon-{{hide[5]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[5]}}" class="padding">
+            <text decode="true"> {{item.ctrlAndDef}}</text>
           </view>
-      </view> 
-
-      <view>
-        <view class="weui-panel__hd font-black-34 " data-index="7" bindtap="changehide">泄露应急处理</view>
-         <view hidden="{{hide[7]}}">
-          <text decode="true">{{item.leakTreatment}}</text>
+        </view>
+        <view class="{{hide[6]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="6" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-roundadd"></view><text decode="true">&nbsp;</text>急救措施
+            </view>
+            <view class="action cuIcon-{{hide[6]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[6]}}" class="padding">
+            <text decode="true"> {{item.firstAid}}</text>
           </view>
-      </view> 
-
-       <view>
-        <view class="weui-panel__hd font-black-34 " data-index="8" bindtap="changehide">废弃处置</view>
-         <view hidden="{{hide[8]}}">
-          <text decode="true"> {{item.disposal}}</text>
+        </view>
+        <view class="{{hide[7]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar solids-bottom" style="min-height:80rpx;" data-index="7" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-barcode"></view><text decode="true">&nbsp;</text>泄露应急处理
+            </view>
+            <view class="action cuIcon-{{hide[7]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[7]}}" class="padding">
+            <text decode="true"> {{item.leakTreatment}}</text>
           </view>
-      </view> 
+        </view>
+        <view class="{{hide[8]?'':'radius shadow-warp bg-white'}}">
+          <view class="cu-bar {{hide[8]?'':'solids-bottom'}}" style="min-height:80rpx;" data-index="8" bindtap="changehide">
+            <view class="action">
+              <view class="cuIcon-delete"></view><text decode="true">&nbsp;</text>废弃处置
+            </view>
+            <view class="action cuIcon-{{hide[8]?'unfold':'fold'}}"></view>
+          </view> 
+          <view hidden="{{hide[8]}}" class="padding">
+            <text decode="true"> {{item.disposal}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
-
-
-
-
-
-
-
 
 <view class="btn-panel">
 
