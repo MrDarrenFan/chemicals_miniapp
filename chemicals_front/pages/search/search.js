@@ -21,7 +21,7 @@ Page({
     // 服务器地址
     serviceurl:"",
     // 符合搜索条件的item 形成的list
-    itemlist:[],
+    itemlist:[{'1':"1"}],
     // 是否显示搜索结果
     isResultHidden: true,
     // 点进去才记录 的 历史记录
