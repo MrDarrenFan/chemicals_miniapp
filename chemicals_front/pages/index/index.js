@@ -120,7 +120,7 @@ Page({
     let that = this
     var alltag=[]
     var ranit = this.data.randomList
-    var max_count=8
+    var max_count=5
   
     for (var t = 0; t < ranit.length;t++){
       var count = 0
