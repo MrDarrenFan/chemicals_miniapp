@@ -25,6 +25,7 @@ Page({
   },
 
 
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -150,7 +151,6 @@ Page({
         }
       }
       
-      // alltag.push[taglist]
       var data={
         'tag': taglist
       }
@@ -159,9 +159,6 @@ Page({
     }
 
 
-    
-  
-    // var place ='dangerOV'
     
 
     that.setData({
@@ -173,6 +170,63 @@ Page({
 
 
   },
+
+  //二维码扫描
+  QRsearch: function () {
+    var myThis = this
+    wx.scanCode({
+      success(res) {
+        console.log(res.result)
+        var chname = res.result
+        myThis.searchByCHName(chname)
+
+
+      }
+    })
+  },
+
+  searchByCHName: function (text) {
+    let that = this
+    var service = this.data.serviceurl
+    wx.request({
+      method: 'GET',
+      url: service + '/chemicals/getByCHName/' + text,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var data=res.data
+        if(data.length>=1){
+          wx.setStorage({
+            key: 'QR',
+            data: data,
+          })
+          
+          var sendData={
+            'type':"QR",
+          }
+          var dataStr=JSON.stringify(sendData)
+          wx.navigateTo({
+            url: '../resultItem/resultItem?data='+dataStr,
+          })
+        }else{
+          wx.showModal({
+            
+            content: '未检测到相关化学品的信息',
+            showCancel:false,
+            success: function (res) {
+              
+            }
+          })
+  
+        }
+      }
+    })
+    //再次清空
+
+  },
+
+
 
 
   /**

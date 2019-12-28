@@ -35,6 +35,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+
     //从缓存中将之前的搜索结果取到
     var that = this
  
@@ -44,6 +46,7 @@ Page({
     })
 
     that._getHistory()
+
   },
 
   //点击某个条目 进入这个item的具体页
@@ -213,13 +216,6 @@ Page({
     }
     //将搜索的内容存到历史
     this._saveHistory(type,text)
-    console.log("再次设置")
-    console.log(this.data.itemlist)
-
-    // that.setData({
-    //   isResultHidden: false,
-    //   isLogHidden: true
-    // })
   
   },
  
@@ -291,24 +287,11 @@ btnSearch:function(event){
           // that.data.itemlist = []
           console.log(that.data.haveResult)
           console.log(that.data.notHaveResult)
-          // console.log("没搜到的情况 itemlist")
-         
-          // console.log(that.data.itemlist)
-          // console.log(that.data.itemlist.length)
           wx.setStorage({
             key: 'itemlist',
             data: [],
-          })
-        
-          
+          })       
         }
-      
-        //跳转到result页面
-        // wx.navigateTo({
-        //   url: '../result/result',
-        // })
-
-
       }
     })
     //再次清空
@@ -369,28 +352,13 @@ btnSearch:function(event){
             itemlist: [],
             haveResult: true,
             notHaveResult: false
-          })
-            
-            // that.data.haveResult=true
-            // that.data.notHaveResult = false
-          // console.log("没搜到的情况 itemlist")
-
-          // console.log(that.data.itemlist)
-          // console.log(that.data.itemlist.length)
-        
-          
+          })          
           wx.setStorage({
             key: 'itemlist',
             data: [],
           })
 
         }
-        // console.log("setlist success")
-        // wx.navigateTo({
-        //   url: '../result/result',
-        // })
-
-
       }
     })   
     //再次清空

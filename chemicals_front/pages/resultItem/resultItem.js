@@ -50,8 +50,7 @@ Page({
         },
       })
 
-    }else {
-      if(data.type=="random"){
+    }else if(data.type=="random"){
       //这边type=random的情况
       var index = data.index
       wx.getStorage({
@@ -73,7 +72,7 @@ Page({
         },
       })
 
-    }else{
+    }else if(data.type =="history_scan"){
         //type=history_scan
       var index = data.index
       wx.getStorage({
@@ -93,11 +92,18 @@ Page({
 
         },
       })
-
-    
+    }else{
+        //type="QR"
+        wx.getStorage({
+          key: 'QR',
+          success: function(res) {
+            console.log(res)
+            that.setData({item:res.data[0]})
+          },
+        })
 
     }
-  }
+  
     
     //以防万一还是将data里的hide初始化为true
     for(var i=0 ;i<9;i++){

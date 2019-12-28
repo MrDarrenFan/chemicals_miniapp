@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/QRsearch/QRsearch",
     "pages/search/search",
-    "pages/result/result",
     "pages/resultItem/resultItem",
     "pages/infoUpload/infoUpload",
     "pages/alarm/alarm",
