@@ -1,4 +1,4 @@
-<view class="cu-bar search bg-white">
+<view class="cu-bar search bg-white solid-bottom" style="position:fixed; top:0px; width:100%">
   <navigator class="search-form round" url="../search/search">
     <text class="cuIcon-search"></text>
     <input type="text" disabled="disabled" placeholder="查询化学品" confirm-type="search"></input>
@@ -8,20 +8,23 @@
   </navigator>
 </view>
 
-<view class="text-center text-xxl text-gray" style="padding-top:300rpx" wx:if="{{history_scan.length==0}}" >当前无记录</view>
-<view wx:else>
-  <view class="cu-bar">
-    <view class="action">化学品查看记录</view>
-    <view class="action">
-      <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
+<view style="position:absolute; top:50px; width:100%; z-index:-1">
+  <view class="text-center text-xxl text-gray" style="padding-top:300rpx" wx:if="{{history_scan.length==0}}" >当前无记录</view>
+  <view wx:else>
+    <view class="cu-bar">
+      <view class="action">化学品查看记录</view>
+      <view class="action">
+        <image bindtap="clearHistory" style="width:40rpx;height:40rpx" src="../../icons/删除.png"></image>
+      </view>
     </view>
-  </view>
-  <view class="cu-card article" wx:for="{{history_scan}}" wx:key="index" wx:for-index="index" wx:for-item="item">
-    <view class="cu-item shadow" style="padding-bottom:0rpx" data-index="{{index}}" bindtap="gotodetail">
-      <view class="cu-bar" style="min-height: 0rpx">
-        <view class="title">{{item.chName}}</view>
-        <view class="action text-content">CAS: {{item.cas}}</view>
+    <view class="cu-card article" wx:for="{{history_scan}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+      <view class="cu-item shadow" style="padding-bottom:0rpx" data-index="{{index}}" bindtap="gotodetail">
+        <view class="cu-bar" style="min-height: 0rpx">
+          <view class="title">{{item.chName}}</view>
+          <view class="action text-content">CAS: {{item.cas}}</view>
+        </view>
       </view>
     </view>
   </view>
 </view>
+

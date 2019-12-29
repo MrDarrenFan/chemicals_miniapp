@@ -1,6 +1,6 @@
 <!--pages/about/about.wxml-->
 
-<view class="cu-bar search bg-white">
+<view class="cu-bar search bg-white solid-bottom" style="position:fixed; top:0px; width:100%">
   <navigator class="search-form round" url="../search/search">
     <text class="cuIcon-search"></text>
     <input type="text" disabled="disabled" placeholder="查询化学品" confirm-type="search"></input>
@@ -10,7 +10,7 @@
   </navigator>
 </view>
 
-<view>
+<view style="position:fixed; top:50px; width:100%; z-index:-1">
   <view class="text-black text-left padding">
     {{aboutus}}
   </view>
