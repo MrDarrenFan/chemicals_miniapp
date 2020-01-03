@@ -3,9 +3,9 @@
     <text class="cuIcon-search"></text>
     <input type="text" disabled="disabled" placeholder="查询化学品" confirm-type="search"></input>
   </navigator>
-  <navigator class="action" url="../QRsearch/QRsearch">
+  <view class="action">
     <image bindtap="QRsearch" style="width:50rpx;height:50rpx" src="../../icons/二维码查询.png"></image>
-  </navigator>
+  </view>
 </view>
 
 <view style="position:absolute; top:50px; width:100%; z-index:-1">

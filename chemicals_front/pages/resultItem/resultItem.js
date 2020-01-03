@@ -92,16 +92,6 @@ Page({
 
         },
       })
-    }else{
-        //type="QR"
-        wx.getStorage({
-          key: 'QR',
-          success: function(res) {
-            console.log(res)
-            that.setData({item:res.data[0]})
-          },
-        })
-
     }
   
     

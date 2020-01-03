@@ -1,18 +1,85 @@
 // pages/history/history.js
+
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      history_scan:[],
+    serviceurl: '',
+    history_scan:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.getHistory()
+    let that = this
+    //开始先将serviceurl从App.js里获取过来
+    that.setData({
+      serviceurl: app.serviceurl
+    })
+
+    this.getHistory()
+  },
+
+  //二维码扫描
+  QRsearch: function () {
+    var myThis = this
+    wx.scanCode({
+      success(res) {
+        console.log(res.result)
+        var casAndBatchNumber = res.result
+        myThis.searchByQRCode(casAndBatchNumber)
+
+
+      }
+    })
+  },
+
+  searchByQRCode: function (text) {
+    let that = this
+    var service = this.data.serviceurl
+    wx.request({
+      method: 'GET',
+      url: service + '/product/getOneByQRCode/' + text,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var data = res.data
+        if (data != null) {
+
+          wx.setStorage({
+            key: 'QR',
+            data: data,
+          })
+
+          var sendData = {
+            'type': "QR",
+          }
+          var dataStr = JSON.stringify(sendData)
+          wx.navigateTo({
+            url: '../productItem/productItem?data=' + dataStr,
+          })
+        } else {
+          wx.showModal({
+
+            content: '未检测到相关化学品产品的信息',
+            showCancel: false,
+            success: function (res) {
+
+            }
+          })
+
+        }
+      }
+    })
+    //再次清空
+
   },
 
   getHistory:function(){

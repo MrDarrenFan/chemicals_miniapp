@@ -1,10 +1,15 @@
 // pages/about/about.js
+
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    serviceurl: '',
     aboutus:"此款软件查询出来的化学品GHS危险分类信息仅供参考，我们不对此信息承担任何法律责任。有任何问题和建议请与我们联系。"
   },
 
@@ -12,6 +17,66 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+    //开始先将serviceurl从App.js里获取过来
+    that.setData({
+      serviceurl: app.serviceurl
+    })
+  },
+
+  //二维码扫描
+  QRsearch: function () {
+    var myThis = this
+    wx.scanCode({
+      success(res) {
+        console.log(res.result)
+        var casAndBatchNumber = res.result
+        myThis.searchByQRCode(casAndBatchNumber)
+
+
+      }
+    })
+  },
+
+  searchByQRCode: function (text) {
+    let that = this
+    var service = this.data.serviceurl
+    wx.request({
+      method: 'GET',
+      url: service + '/product/getOneByQRCode/' + text,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var data = res.data
+        if (data != null) {
+
+          wx.setStorage({
+            key: 'QR',
+            data: data,
+          })
+
+          var sendData = {
+            'type': "QR",
+          }
+          var dataStr = JSON.stringify(sendData)
+          wx.navigateTo({
+            url: '../productItem/productItem?data=' + dataStr,
+          })
+        } else {
+          wx.showModal({
+
+            content: '未检测到相关化学品产品的信息',
+            showCancel: false,
+            success: function (res) {
+
+            }
+          })
+
+        }
+      }
+    })
+    //再次清空
 
   },
 

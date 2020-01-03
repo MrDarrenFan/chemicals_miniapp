@@ -4,6 +4,7 @@
     "pages/QRsearch/QRsearch",
     "pages/search/search",
     "pages/resultItem/resultItem",
+    "pages/productItem/productItem",
     "pages/infoUpload/infoUpload",
     "pages/alarm/alarm",
     "pages/about/about",

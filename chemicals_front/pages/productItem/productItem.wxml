@@ -1,0 +1,34 @@
+<view class="cu-bar">
+  <view class="action" style="margin-left:50rpx">
+    <text class="text-bold text-xl"></text>
+  </view>
+  <view class="action" style="margin-right:50rpx">
+    <text class="text-bold text-df">CAS：{{item.cas}}</text>
+  </view>
+</view>
+
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="cu-bar">
+      <view class="title">
+        <text class="cuIcon-title text-black"></text>产品记录
+      </view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action" style="min-width:4em; justify-content:left">产品批号</view>
+          <view class="action">{{item.batchNumber}}</view>
+        </view>
+        <view class="cu-bar solids-bottom" style="min-height:80rpx;">
+          <view class="action" style="min-width:4em; justify-content:left">生产厂商</view>
+          <view class="action">{{item.manuName}}</view>
+        </view>
+        <view class="cu-bar" style="min-height:80rpx;">
+          <view class="action" style="min-width:4em; justify-content:left">生产日期</view>
+          <view class="action">{{item.manufactureDate}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
