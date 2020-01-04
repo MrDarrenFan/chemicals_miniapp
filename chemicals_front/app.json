@@ -9,7 +9,8 @@
     "pages/alarm/alarm",
     "pages/about/about",
     "pages/history/history",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/admin/admin"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,27 +24,27 @@
   "tabBar": {
     "color": "#707070",
     "selectedColor": "#000000",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-       "iconPath": "/images/home.png",
-       "selectedIconPath": "/images/home_tap.png"
-    },
-    {
-      "pagePath": "pages/history/history",
-      "text": "查看记录",
-      "iconPath": "/images/history.png",
-      "selectedIconPath": "/images/history_tap.png"
-    },
-    {
-      "pagePath": "pages/about/about",
-      "text": "关于我们",
-      "iconPath": "/images/me.png",
-      "selectedIconPath": "/images/me_tap.png"
-    }
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_tap.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "查看记录",
+        "iconPath": "/images/history.png",
+        "selectedIconPath": "/images/history_tap.png"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于我们",
+        "iconPath": "/images/me.png",
+        "selectedIconPath": "/images/me_tap.png"
+      }
     ]
   },
- 
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {

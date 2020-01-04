@@ -159,6 +159,13 @@
 					"id": -1,
 					"name": "product",
 					"pathName": "pages/productItem/productItem",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about/about",
+					"pathName": "pages/about/about",
 					"scene": null
 				}
 			]

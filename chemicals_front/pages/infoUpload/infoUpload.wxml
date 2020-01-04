@@ -8,13 +8,13 @@
 
   <view class="cu-form-group">
     <view class="title">产品批号</view>
-      <input type="text"  name="serialNumber"  />
+      <input type="text" placeholder="请输入"  name="serialNumber"  />
   </view>
  
 
   <view class="cu-form-group">
     <view class="title">企业名称</view>
-      <input type="text"  name="bussinessName"  />
+      <input type="text" placeholder="请输入" name="bussinessName"  />
   </view>
 
     <!-- <view class="section">
