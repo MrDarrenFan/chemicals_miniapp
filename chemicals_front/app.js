@@ -4,10 +4,10 @@ import EventEmitter from './utils/event' // 事件总线
 
 App({
   //服务器的地址和端口号 如有变动，直接改此处即可
-  serviceurl: "http://localhost:8080", // 本地测试
+  // serviceurl: "http://localhost:8080", // 本地测试
   // serviceurl: "http://192.168.31.70:8080", // 宿舍内网测试
   // serviceurl: "http://172.19.184.152:8080", 
-  // serviceurl: "http://2lk8460702.wicp.vip:80", // 外网
+  serviceurl: "http://2lk8460702.wicp.vip:80", // 外网
 
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）

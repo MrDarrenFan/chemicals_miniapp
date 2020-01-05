@@ -318,23 +318,18 @@ btnSearch:function(event){
         if (res.data.length != 0) {
           var data = JSON.stringify(res.data)
           var tmp = data.split("},{")
-          for (var i = 0; i < tmp.length; ++i) {
+          for (var i = 0; i < tmp.length; i++) {
             if (tmp[i][0] == "[") {
-              tmp[i] = tmp[i].substring(1)
-              tmp[i] = tmp[i] + "}"
-            } else {
-              if (tmp[i][tmp[i].length - 1] == "]") {
-                tmp[i] = tmp[i].substring(0, tmp[i].length - 1)
-                tmp[i] = "{" + tmp[i]
-              } else {
-                tmp[i] = "{" + tmp[i] + "}"
-              }
+              tmp[i] = tmp[i].substring(2)
+              // tmp[i] = tmp[i] + "}"
             }
+            if (tmp[i][tmp[i].length - 1] == "]") {
+              tmp[i] = tmp[i].substring(0, tmp[i].length - 2)
+
+            }
+            tmp[i] = "{" + tmp[i] + "}"
             tmp[i] = JSON.parse(tmp[i])
           }
-
-          that.data.haveResult = false
-          that.data.notHaveResult = true
 
           that.setData({
             itemlist: tmp,

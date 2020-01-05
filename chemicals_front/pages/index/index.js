@@ -58,7 +58,6 @@ Page({
       }
     }
 
-    // console.log(str)
     wx.request({
       url: service + '/chemicals/getThreeByRandom/' + str,
       success: function (res) {
