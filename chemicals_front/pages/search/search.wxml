@@ -1,4 +1,4 @@
-<view style="position:fixed ; top:0px; width:100%">
+<view style="position:fixed; top:0px; z-index:100; width:100%">
   <view class="cu-bar search bg-white solid-bottom" bindsearch="onSearch">
     <picker style="margin:0rpx 10rpx 0rpx 20rpx;" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
       <view class="picker">
@@ -30,19 +30,18 @@
       <image bindtap="clearHistory" style="width:30rpx;height:30rpx" src="../../icons/删除.png"></image>
     </view>
   </view>
-</view>
-
-<!-- 历史记录每一项 -->
-<view style="display:flex; flex-direction:row; flex-wrap:wrap; position:absolute; top:100px;">
-  <view hidden="{{isLogHidden}}" class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >
-    <view class="bg-white">
-      <view class="margin-left cu-tag round" style="margin-bottom:20rpx">{{item.value}}</view>
+  <!-- 历史记录每一项 -->
+  <view style="display:flex; flex-direction:row; flex-wrap:wrap;">
+    <view hidden="{{isLogHidden}}" class="search-box-history__item" wx:for="{{history}}" wx:key="item" bindtap="reSearch" data-type="{{item.type}}" data-value="{{item.value}}" >
+      <view class="bg-white">
+        <view class="margin-left cu-tag round" style="margin-bottom:20rpx">{{item.value}}</view>
+      </view>
     </view>
   </view>
 </view>
 
 <!-- 查询结果 -->
-<view class="bg-white" hidden="{{isResultHidden}}" style="width:100%; height:90%; position:absolute; top:50px; z-index:-1;">
+<view class="bg-white" hidden="{{isResultHidden}}" style="width:100%; height:90%; position:absolute; top:50px; z-index:1;">
   <view hidden="{{haveResult}}" class="weui-cells weui-cells_after-title" wx:for="{{itemlist}}"  wx:for-item="item" wx:key="index" >
     <view class="cu-bar bg-white text-df" data-index="{{index}}"  bindtap="gotodetail">
       <text class="text-black" style="margin-left:50rpx;">{{item.chName}}</text>
