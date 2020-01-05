@@ -14,14 +14,15 @@
   <view class="text-black text-left padding">
     {{aboutus}}
   </view>
-  <view class="cu-bar" style="position: absolute; bottom: 200rpx; width: 100%; justify-content: center;">
+  <!-- 管理员入口 -->
+  <!-- <view class="cu-bar" style="position: absolute; bottom: 200rpx; width: 100%; justify-content: center;">
     <view class="action">
       <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="DialogModal">管理员入口</button>
     </view>
-  </view>
+  </view> -->
 </view>
 
-<view class="cu-modal {{modalName=='DialogModal'?'show':''}}">
+<!-- <view class="cu-modal {{modalName=='DialogModal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content text-black">管理员登陆</view>
@@ -45,4 +46,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
