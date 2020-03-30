@@ -4,9 +4,9 @@ import EventEmitter from './utils/event' // 事件总线
 
 App({
   //服务器的地址和端口号 如有变动，直接改此处即可
-  // serviceurl: "http://localhost:8080", // 本地测试
+  serviceurl: "http://localhost:8080", // 本地测试
   // serviceurl: "http://192.168.31.70:8080", // 宿舍内网测试
-  serviceurl: "https://fanzl.top", // 云服务器域名
+  // serviceurl: "https://fanzl.top", // 云服务器域名
   // serviceurl: "http://47.111.5.117:8080", // 云服务器IP
 
   /**
