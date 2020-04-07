@@ -15,7 +15,7 @@ public class HelloController {
     @RequestMapping("/hello")
     public String sayHello() {
 //        logger.info("log开始");
-        return "hello!";
+        return "hello！";
     }
 
 }
