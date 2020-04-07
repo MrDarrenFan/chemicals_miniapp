@@ -14,8 +14,8 @@ public class HelloController {
     @ResponseBody
     @RequestMapping("/hello")
     public String sayHello() {
-        logger.info("log开始");
-        return "hello world!";
+//        logger.info("log开始");
+        return "hello!";
     }
 
 }
