@@ -1,12 +1,10 @@
 package com.nju.chemicals.controller;
 
 import com.nju.chemicals.entity.Chemical;
+import com.nju.chemicals.entity.ChemicalWithId;
 import com.nju.chemicals.service.ChemicalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -49,6 +47,33 @@ public class ChemicalController {
     @RequestMapping("/getThreeByRandom/{nameStr}")
     public List<Chemical> getThreeByRandom(@PathVariable String nameStr) {
         return chemicalService.getThreeByRandom(nameStr);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getAll")
+    public List<ChemicalWithId> getAll() {
+        return chemicalService.getAll();
+    }
+
+    // 添加一条化学品信息
+    @ResponseBody
+    @RequestMapping("/addOneByObj")
+    public String addOneByObj(@RequestBody Chemical chemical) {
+        return chemicalService.addOneById(chemical);
+    }
+
+    // 修改一条化学品信息
+    @ResponseBody
+    @RequestMapping("/editOneById")
+    public String editOneById(@RequestBody ChemicalWithId chemicalWithId) {
+        return chemicalService.editOneById(chemicalWithId);
+    }
+
+    // 通过id删除一条化学品信息
+    @ResponseBody
+    @RequestMapping("/removeOneById/{id}")
+    public String removeOneById(@PathVariable Long id) {
+        return chemicalService.removeOneById(id);
     }
 
 }

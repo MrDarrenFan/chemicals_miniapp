@@ -10,10 +10,20 @@
         <result column="manu_name" property="manuName" jdbcType="VARCHAR"/>
         <result column="manufacture_date" property="manufactureDate" jdbcType="DATE"/>
     </resultMap>
+    <resultMap id="WithIdResultMap" type="com.nju.chemicals.entity.ProductWithId">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="cas" property="cas" jdbcType="VARCHAR"/>
+        <result column="batch_number" property="batchNumber" jdbcType="VARCHAR"/>
+        <result column="manu_name" property="manuName" jdbcType="VARCHAR"/>
+        <result column="manufacture_date" property="manufactureDate" jdbcType="DATE"/>
+    </resultMap>
 
-    <!--  某条查询需要的列（按id匹配）  -->
+    <!--  某条查询需要的列（按id匹配）  -->  <!-- 这里cas和id报错为idea的bug -->
     <sql id="BaseColumns">
         cas, batch_number, manu_name, manufacture_date
+    </sql>
+    <sql id="WithIdColumns">
+        id, cas, batch_number, manu_name, manufacture_date
     </sql>
 
     <!--  通过cas号和批次号精准查询  -->
@@ -24,9 +34,28 @@
     </select>
 
     <!--  取得所有化学品产品  -->
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT <include refid="BaseColumns"/>
+    <select id="selectAll" resultMap="WithIdResultMap">
+        SELECT <include refid="WithIdColumns"/>
         FROM product_info
     </select>
+
+    <!--  插入一条化学品产品信息  -->
+    <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.Product">
+        INSERT INTO product_info(<include refid="BaseColumns"/>)
+        VALUES (#{cas}, #{batchNumber}, #{manuName}, #{manufactureDate})
+    </insert>
+
+    <!--  修改一条化学品产品信息  -->
+    <update id="updateOneByObj" parameterType="com.nju.chemicals.entity.ProductWithId">
+        UPDATE product_info
+        SET cas=#{cas}, batch_number=#{batchNumber}, manu_name=#{manuName}, manufacture_date=#{manufactureDate}
+        WHERE id = #{id}
+    </update>
+
+    <!--  通过id删除一条化学品产品信息  -->
+    <delete id="deleteOneById" parameterType="java.lang.Long">
+        DELETE FROM product_info
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

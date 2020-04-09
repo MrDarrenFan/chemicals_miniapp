@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nju.chemicals.mapper.AdminMapper">
+
+    <!--  列名与变量名映射关系  -->
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Admin">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="psword" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--  某条查询需要的列（按id匹配）  --> <!-- 这里id报错为idea的bug -->
+    <sql id="BaseColumns">
+        id, username, psword
+    </sql>
+
+    <!--  取得一条管理员信息  -->
+    <select id="selectOneByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumns"/>
+        FROM admins
+        WHERE username = #{username}
+    </select>
+
+    <!--  插入一条管理员信息  -->
+    <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.Admin">
+        INSERT INTO admins(username, psword)
+        VALUES (#{username}, #{password})
+    </insert>
+
+    <!--  修改该管理员的密码  -->
+    <update id="updateOneByObj" parameterType="com.nju.chemicals.entity.Admin">
+        UPDATE admins
+        SET username=#{username}, psword=#{password}
+        WHERE id = #{id}
+    </update>
+
+    <!--  通过id删除一条管理员信息  -->
+    <delete id="deleteOneById" parameterType="java.lang.Long">
+        DELETE FROM admins
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

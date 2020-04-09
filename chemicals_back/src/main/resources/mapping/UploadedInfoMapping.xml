@@ -4,7 +4,16 @@
 <mapper namespace="com.nju.chemicals.mapper.UploadedInfoMapper">
 
     <!--  列名与变量名映射关系  -->
-    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Chemical">
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.UploadedInfo">
+        <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
+        <result column="batch_number" property="batchNumber" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="chem_status" property="chemStatus" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="WithIdResultMap" type="com.nju.chemicals.entity.UploadedInfoWithId">
+        <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
         <result column="batch_number" property="batchNumber" jdbcType="VARCHAR"/>
         <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
@@ -13,9 +22,37 @@
         <result column="location" property="location" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <!--  某条查询需要的列（按id匹配）  --> <!-- 这里ch_name和id报错为idea的bug -->
+    <sql id="BaseColumns">
+        ch_name, batch_number, company_name, chem_status, remark, location
+    </sql>
+    <sql id="WithIdColumns">
+        id, ch_name, batch_number, company_name, chem_status, remark, location
+    </sql>
+
+    <!--  取得所有上传信息  -->
+    <select id="selectAll" resultMap="WithIdResultMap">
+        SELECT <include refid="WithIdColumns"/>
+        FROM uploaded_info
+    </select>
+
+    <!--  插入一条上传信息  -->
     <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.UploadedInfo">
         INSERT INTO uploaded_info(ch_name, batch_number, company_name, chem_status, remark, location)
         VALUES (#{chName}, #{batchNumber}, #{companyName}, #{chemStatus}, #{remark}, #{location})
     </insert>
+
+    <!--  修改一条上传信息  -->
+    <update id="updateOneByObj" parameterType="com.nju.chemicals.entity.UploadedInfoWithId">
+        UPDATE uploaded_info
+        SET ch_name=#{chName}, batch_number=#{batchNumber}, company_name=#{companyName}, chem_status=#{chemStatus}, remark=#{remark}, location=#{location}
+        WHERE id = #{id}
+    </update>
+
+    <!--  通过id删除一条上传信息  -->
+    <delete id="deleteOneById" parameterType="java.lang.Long">
+        DELETE FROM uploaded_info
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

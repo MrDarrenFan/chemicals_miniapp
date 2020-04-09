@@ -1,12 +1,12 @@
 package com.nju.chemicals.controller;
 
 import com.nju.chemicals.entity.InfoForPolice;
+import com.nju.chemicals.entity.InfoForPoliceWithId;
 import com.nju.chemicals.service.InfoForPoliceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/police")
@@ -16,9 +16,29 @@ public class InfoForPoliceController {
     private InfoForPoliceService infoForPoliceService;
 
     @ResponseBody
+    @RequestMapping("/getAll")
+    public List<InfoForPoliceWithId> getAll() {
+        return infoForPoliceService.getAll();
+    }
+
+    @ResponseBody
     @RequestMapping("/addOneByObj")
-    public Boolean addOneByObj(@RequestBody InfoForPolice infoForPolice) {
+    public String addOneByObj(@RequestBody InfoForPolice infoForPolice) {
         return infoForPoliceService.addOneByObj(infoForPolice);
+    }
+
+    // 修改一条报警信息
+    @ResponseBody
+    @RequestMapping("/editOneById")
+    public String editOneById(@RequestBody InfoForPoliceWithId infoForPoliceWithId) {
+        return infoForPoliceService.editOneById(infoForPoliceWithId);
+    }
+
+    // 通过id删除一条报警信息
+    @ResponseBody
+    @RequestMapping("/removeOneById/{id}")
+    public String removeOneById(@PathVariable Long id) {
+        return infoForPoliceService.removeOneById(id);
     }
 
 }

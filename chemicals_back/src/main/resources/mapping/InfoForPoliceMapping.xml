@@ -4,15 +4,44 @@
 <mapper namespace="com.nju.chemicals.mapper.InfoForPoliceMapper">
 
     <!--  列名与变量名映射关系  -->
-    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Chemical">
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.InfoForPolice">
         <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="position" property="position" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="WithIdResultMap" type="com.nju.chemicals.entity.InfoForPoliceWithId">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--  某条查询需要的列（按id匹配）  --> <!-- 这里id报错为idea的bug -->
+    <sql id="WithIdColumns">
+        id, ch_name, remark, location
+    </sql>
+
+    <select id="selectAll" resultMap="WithIdResultMap">
+        SELECT <include refid="WithIdColumns"/>
+        FROM info_for_police
+    </select>
 
     <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.InfoForPolice">
         INSERT INTO info_for_police(ch_name, remark, location)
         VALUES (#{chName}, #{remark}, #{location})
     </insert>
+
+    <!--  修改一条报警信息  -->
+    <update id="updateOneByObj" parameterType="com.nju.chemicals.entity.InfoForPoliceWithId">
+        UPDATE info_for_police
+        SET ch_name=#{chName}, remark=#{remark}, location=#{location}
+        WHERE id = #{id}
+    </update>
+
+    <!--  通过id删除一条报警信息记录  -->
+    <delete id="deleteOneById" parameterType="java.lang.Long">
+        DELETE FROM info_for_police
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

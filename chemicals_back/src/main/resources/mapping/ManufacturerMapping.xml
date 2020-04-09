@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nju.chemicals.mapper.ManufacturerMapper">
+
+    <!--  列名与变量名映射关系  -->
+    <resultMap id="BaseResultMap" type="com.nju.chemicals.entity.Manufacturer">
+        <result column="manu_name" property="manuName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="contact" property="contact" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="WithIdResultMap" type="com.nju.chemicals.entity.ManufacturerWithId">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="manu_name" property="manuName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="contact" property="contact" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--  某条查询需要的列（按id匹配）  --> <!-- 这里manu_name和id报错为idea的bug -->
+    <sql id="BaseColumns">
+        manu_name, address, contact
+    </sql>
+    <sql id="WithIdColumns">
+        id, manu_name, address, contact
+    </sql>
+
+    <!--  取得所有生产商信息  -->
+    <select id="selectAll" resultMap="WithIdResultMap">
+        SELECT <include refid="WithIdColumns"/>
+        FROM manufacturers
+    </select>
+
+    <!--  插入一条生产商信息  -->
+    <insert id="insertOneByObj" parameterType="com.nju.chemicals.entity.Manufacturer">
+        INSERT INTO manufacturers(manu_name, address, contact)
+        VALUES (#{manuName}, #{address}, #{contact})
+    </insert>
+
+    <!--  修改一条生产商信息  -->
+    <update id="updateOneByObj" parameterType="com.nju.chemicals.entity.ManufacturerWithId">
+        UPDATE manufacturers
+        SET manu_name=#{manuName}, address=#{address}, contact=#{contact}
+        WHERE id = #{id}
+    </update>
+
+    <!--  通过id删除一条生产商信息  -->
+    <delete id="deleteOneById" parameterType="java.lang.Long">
+        DELETE FROM manufacturers
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

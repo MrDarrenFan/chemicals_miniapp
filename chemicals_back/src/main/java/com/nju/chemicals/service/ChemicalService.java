@@ -1,6 +1,7 @@
 package com.nju.chemicals.service;
 
 import com.nju.chemicals.entity.Chemical;
+import com.nju.chemicals.entity.ChemicalWithId;
 import com.nju.chemicals.mapper.ChemicalMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,46 @@ public class ChemicalService {
             }
         }
         return result;
+    }
+
+    public List<ChemicalWithId> getAll() {
+        return chemicalMapper.selectAll();
+    }
+
+    // 添加一条化学品信息
+    public String addOneById(Chemical chemical) {
+        Integer resultNumber = chemicalMapper.insertOneByObj(chemical);
+        String resultText = "";
+        if (resultNumber > 0) {
+            resultText = "添加成功，影响行数：" + resultNumber;
+        } else {
+            resultText = "添加失败";
+        }
+        return resultText;
+    }
+
+    // 修改一条化学品信息
+    public String editOneById(ChemicalWithId chemicalWithId) {
+        Integer resultNumber = chemicalMapper.updateOneByObj(chemicalWithId);
+        String resultText = "";
+        if (resultNumber > 0) {
+            resultText = "修改成功，影响行数：" + resultNumber;
+        } else {
+            resultText = "修改失败";
+        }
+        return resultText;
+    }
+
+    // 通过id删除一条化学品信息
+    public String removeOneById(Long id) {
+        Integer resultNumber = chemicalMapper.deleteOneById(id);
+        String resultText = "";
+        if (resultNumber > 0) {
+            resultText = "删除成功，影响行数：" + resultNumber;
+        } else {
+            resultText = "删除失败";
+        }
+        return resultText;
     }
 
 }

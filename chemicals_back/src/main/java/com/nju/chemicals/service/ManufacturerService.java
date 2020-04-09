@@ -1,26 +1,26 @@
 package com.nju.chemicals.service;
 
-import com.nju.chemicals.entity.InfoForPolice;
-import com.nju.chemicals.entity.InfoForPoliceWithId;
-import com.nju.chemicals.mapper.InfoForPoliceMapper;
+import com.nju.chemicals.entity.Manufacturer;
+import com.nju.chemicals.entity.ManufacturerWithId;
+import com.nju.chemicals.mapper.ManufacturerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class InfoForPoliceService {
+public class ManufacturerService {
 
     @Autowired
-    private InfoForPoliceMapper infoForPoliceMapper;
+    private ManufacturerMapper manufacturerMapper;
 
-    public List<InfoForPoliceWithId> getAll() {
-        return infoForPoliceMapper.selectAll();
+    public List<ManufacturerWithId> getAll() {
+        return manufacturerMapper.selectAll();
     }
 
-    // 添加一条报警信息
-    public String addOneByObj(InfoForPolice infoForPolice) {
-        Integer resultNumber = infoForPoliceMapper.insertOneByObj(infoForPolice);
+    // 添加一条生产商信息
+    public String addOneByObj(Manufacturer manufacturer) {
+        Integer resultNumber = manufacturerMapper.insertOneByObj(manufacturer);
         String resultText = "";
         if (resultNumber > 0) {
             resultText = "添加成功，影响行数：" + resultNumber;
@@ -30,9 +30,9 @@ public class InfoForPoliceService {
         return resultText;
     }
 
-    // 修改一条报警信息
-    public String editOneById(InfoForPoliceWithId infoForPoliceWithId) {
-        Integer resultNumber = infoForPoliceMapper.updateOneByObj(infoForPoliceWithId);
+    // 修改一条生产商信息
+    public String editOneById(ManufacturerWithId manufacturerWithId) {
+        Integer resultNumber = manufacturerMapper.updateOneByObj(manufacturerWithId);
         String resultText = "";
         if (resultNumber > 0) {
             resultText = "修改成功，影响行数：" + resultNumber;
@@ -42,9 +42,9 @@ public class InfoForPoliceService {
         return resultText;
     }
 
-    // 通过id删除一条报警信息
+    // 通过id删除一条生产商信息
     public String removeOneById(Long id) {
-        Integer resultNumber = infoForPoliceMapper.deleteOneById(id);
+        Integer resultNumber = manufacturerMapper.deleteOneById(id);
         String resultText = "";
         if (resultNumber > 0) {
             resultText = "删除成功，影响行数：" + resultNumber;
